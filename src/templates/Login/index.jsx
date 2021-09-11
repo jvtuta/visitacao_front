@@ -1,9 +1,19 @@
-import './style.css';
+import { FormLogin } from "../../components/FormLogin"
+import { Container, Row, Col } from 'react-bootstrap'
+import { Header } from "../../components/Header"
 
-export default function Login() {
+export function Login () {
     return (
-        <div>
-            <h1>Tela de login!</h1>
-        </div>
+        <>
+        <Header Login="true"/>
+        <Container>
+            <Row className="justify-content-center">
+                <Col xs={5}>
+                    
+                    <FormLogin />
+                </Col>
+            </Row>
+        </Container>
+        </>
     )
 }
