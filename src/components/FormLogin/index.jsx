@@ -1,13 +1,23 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Authenticate_user } from "../../context/Auth/actions";
 import { AuthContext } from "../../context/Auth/context";
-import { Card, Form } from "react-bootstrap";
+import { Card, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import './style.css'
 
 export const FormLogin = () => {
   const { authState, authDispatch } = useContext(AuthContext);
+  const email = useRef(null)
+  const password = useRef(null)
+//   useEffect(()=>{
+
+//   },[])
   //usuário é new URLSearchParams({name: 'teste', 'password': 'teste2'})
   //   Authenticate_user(authDispatch, usuario)
+  function handleBlogin() {
+    const usuario = new URLSearchParams({email: email.current.value, password: password.current.value});
+    Authenticate_user(authDispatch, usuario)
+  }
   return (
     <Card>
       <Card.Header>Login</Card.Header>
@@ -16,6 +26,7 @@ export const FormLogin = () => {
           <Form.Group controlId="formGroupEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control
+              ref={email}
               type="email"
               placeholder="Digite seu email"
             ></Form.Control>
@@ -23,6 +34,7 @@ export const FormLogin = () => {
           <Form.Group controlId="formGroupPassword">
             <Form.Label>Senha</Form.Label>
             <Form.Control
+              ref={password}
               type="password"
               placeholder="Digite a senha"
             ></Form.Control>
@@ -30,9 +42,13 @@ export const FormLogin = () => {
         </Form>
       </Card.Body>
       <Card.Footer>
-          <Card.Text>
-              <Link to="/registro">Registrar</Link>
-          </Card.Text>
+        <Button className="mt-3 me-3" variant="info" onClick={handleBlogin}> Logar </Button>
+        <Link to="/registrar" className=" mt-3 btn btn-primary">Registrar</Link>
+        {authState.loading&&(
+            <div>
+                <span>Carregando...</span>
+            </div>
+        )}
       </Card.Footer>
     </Card>
   );

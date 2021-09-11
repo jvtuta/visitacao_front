@@ -5,7 +5,7 @@ import { AuthProvider } from "./context/Auth";
 
 import "./styles/Global/bootstrap/style-min.css";
 import { Login } from "./templates/Login";
-import Registro from "./templates/Registro";
+import { Registro } from "./templates/Registro";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +14,7 @@ ReactDOM.render(
         <Route path="/login" excat>
           <Login />
         </Route>
-        <Route path="/registro" exact>
+        <Route path="/registrar" exact>
           <Registro />
         </Route>
       </AuthProvider>

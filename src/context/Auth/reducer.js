@@ -18,7 +18,7 @@ export const reducer = (state, action) => {
       return {...state, loading: true}
     case types.ERR_LOGON:
       //Caso der erro
-      return {...state, feedback: action.payload};
+      return {...state, feedback: action.payload, loading: false};
     case 'teste':
       return console.log('testando dispatch no componente filho')
     default:

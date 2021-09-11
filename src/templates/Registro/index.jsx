@@ -1,11 +1,19 @@
 import { Link } from "react-router-dom";
 import { Header } from "../../components/Header";
+import { Container, Row, Col } from "react-bootstrap";
+import { FormRegistro } from "../../components/FormRegistro";
 
-export default function Registro () {
-    return (
-        <> 
-            <Header login='true'/>
-            <Link to="/login">Login</Link>
-        </>
-    )
-}
+export const Registro = () => {
+  return (
+    <>
+      <Header login="true" />
+      <Container>
+        <Row className="justify-content-center">
+            <Col xs={5}>
+                <FormRegistro />
+            </Col>
+        </Row>
+      </Container>
+    </>
+  );
+};

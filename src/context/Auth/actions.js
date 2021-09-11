@@ -14,7 +14,7 @@ export const Authenticate_user = async (dispatch, form_user) => {
       },
       data: form_user
 
-    })).json();
+    })).data;
     //retornar função para ser executada no componente para uma estabiliade maior entre as requisições da api
     dispatch({
       type: types.SUCCESS_AUTHENTICATION,
