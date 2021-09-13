@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useRef } from "react";
 import { Authenticate_user } from "../../context/Auth/actions";
 import { AuthContext } from "../../context/Auth/context";
 import { Card, Form, Button } from "react-bootstrap";
@@ -9,11 +9,7 @@ export const FormLogin = () => {
   const { authState, authDispatch } = useContext(AuthContext);
   const email = useRef(null)
   const password = useRef(null)
-//   useEffect(()=>{
 
-//   },[])
-  //usuário é new URLSearchParams({name: 'teste', 'password': 'teste2'})
-  //   Authenticate_user(authDispatch, usuario)
   function handleBlogin() {
     const usuario = new URLSearchParams({email: email.current.value, password: password.current.value});
     Authenticate_user(authDispatch, usuario)
