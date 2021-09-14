@@ -12,13 +12,12 @@ export const FormRegistro = () => {
   const name = useRef(null)
   const [verifyPass, setVerifyPass] = useState()
   function register () {
-    console.log('register')
 
     if(password.current.value === password_confirmation.current.value) {
       const params = new URLSearchParams({
-        email: email,
-        password: password,
-        name: name
+        email: email.current.value,
+        password: password.current.value,
+        name: name.current.value
       })
       Register_user(authDispatch, params)
       return;

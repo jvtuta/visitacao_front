@@ -19,10 +19,10 @@ export const Authenticate_user = async (dispatch, form_user) => {
     //retornar função para ser executada no componente para uma estabiliade maior entre as requisições da api
     dispatch({
       type: types.SUCCESS_AUTHENTICATION,
-      payload: { ...response }, //api deve retornar jwt_token e user caso dê sucesso
+      payload: { ...response, authenticated: true }, //api deve retornar jwt_token e user caso dê sucesso
     });
   } catch (err) {
-    console.log(err);
+    console.log('erro '+err);
     dispatch({ type: types.ERR_LOGON, payload: err });
   }
 };
@@ -41,14 +41,14 @@ export const Register_user = async (dispatch, form_user) => {
       data: form_user
 
     })).data
-
+    console.log(response)
     dispatch({
       type: types.SUCCESS_REGISTRATION,
       payload: { ...response }
     })
+    
 
   } catch(err) {
-    console.log(err)
     dispatch({type: types.ERR_REGISTRATION})
   }
 }

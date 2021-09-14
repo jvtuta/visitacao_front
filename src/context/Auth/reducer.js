@@ -7,13 +7,12 @@ export const reducer = (state, action) => {
           return {
               ...state, 
               user: action.payload.user, 
-              authenticated: true,
+              authenticated: action.payload.authenticated,
               jwt_token: action.payload.jwt_token,
               loading: false,
               csrf_token: action.payload.csrf_token
             }
       }
-      return;
     case types.TRYING_AUTHENCATION:
       //tela de carregamento
       return { ...state, loading: true }
