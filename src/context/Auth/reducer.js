@@ -16,12 +16,16 @@ export const reducer = (state, action) => {
       return;
     case types.TRYING_AUTHENCATION:
       //tela de carregamento
-      return {...state, loading: true}
+      return { ...state, loading: true }
     case types.ERR_LOGON:
       //Caso der erro
       return {...state, feedback: action.payload, loading: false};
-    case 'teste':
-      return console.log('testando dispatch no componente filho')
+    case types.TRYING_REGISTRATION:
+      return { ...state, loading: true }
+    case types.SUCCESS_REGISTRATION:
+      return { ...state, loading: false, feedback: 'Usuário cadastrado com sucesso!' }
+    case types.ERR_REGISTRATION: 
+      return { ...state, loading: false, feedback: 'Erro ao cadastrar usuário'}
     default:
       return;
   }

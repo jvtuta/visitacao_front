@@ -8,7 +8,7 @@ export const Authenticate_user = async (dispatch, form_user) => {
   try {
     const response = await (await axios({
       method: 'post',
-      url: ip_srv+'/api/login',
+      url: ip_srv+'login',
       headers: {
            'Content-Type': 'application/x-www-form-urlencoded',
            'Accept': 'application/json'
@@ -26,3 +26,29 @@ export const Authenticate_user = async (dispatch, form_user) => {
     dispatch({ type: types.ERR_LOGON, payload: err });
   }
 };
+
+export const Register_user = async (dispatch, form_user) => {
+  dispatch({ type: types.TRYING_REGISTRATION })
+  console.log('tentado registrar o usuário')
+  try {
+    const response = await( await axios({
+      method: 'post',
+      url: ip_srv+'register',
+      headers: {
+           'Content-Type': 'application/x-www-form-urlencoded',
+           'Accept': 'application/json'
+      },
+      data: form_user
+
+    })).data
+
+    dispatch({
+      type: types.SUCCESS_REGISTRATION,
+      payload: { ...response }
+    })
+
+  } catch(err) {
+    console.log(err)
+    dispatch({type: types.ERR_REGISTRATION})
+  }
+}

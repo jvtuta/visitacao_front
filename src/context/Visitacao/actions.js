@@ -1,10 +1,12 @@
 import * as types from './types'
-
+import {axios} from 'axios';
 //
 export const load_visitacao = async (dispatch) => {
     dispatch({ type: types.LOADING_VISITACAO })
     
-    
+    const response = await ( axios({
+        
+    }))
     //retornar função
 }
 
