@@ -29,7 +29,6 @@ export const Authenticate_user = async (dispatch, form_user) => {
 
 export const Register_user = async (dispatch, form_user) => {
   dispatch({ type: types.TRYING_REGISTRATION })
-  console.log('tentado registrar o usuário')
   try {
     const response = await( await axios({
       method: 'post',
@@ -41,7 +40,6 @@ export const Register_user = async (dispatch, form_user) => {
       data: form_user
 
     })).data
-    console.log(response)
     dispatch({
       type: types.SUCCESS_REGISTRATION,
       payload: { ...response }

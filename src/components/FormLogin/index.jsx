@@ -20,7 +20,7 @@ export const FormLogin = () => {
     if(authState.authenticated) {
       history.push('/')
     }
-  },[authState.authenticated])
+  },[authState.authenticated, history])
 
   return (
     <Card>

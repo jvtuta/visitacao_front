@@ -1,6 +1,5 @@
 
 export const Visitacao = () => {
-    return ( 
-        <h1>Visitacao</h1>
-    )
+    return <h1>Visitacao</h1>
+    
 }

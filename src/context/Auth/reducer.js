@@ -13,6 +13,7 @@ export const reducer = (state, action) => {
               csrf_token: action.payload.csrf_token
             }
       }
+      break
     case types.TRYING_AUTHENCATION:
       //tela de carregamento
       return { ...state, loading: true }

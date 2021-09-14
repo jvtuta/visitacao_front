@@ -4,7 +4,6 @@ import { AuthContext } from "../../context/Auth/context";
 
 export const PrivateRoute = ({ children, ...options }) => {
   const { authState } = useContext(AuthContext)
-  console.log(authState)
   return (
     //Retornar children caso a rota esteja autenticada
     <Route {...options} render={()=>{

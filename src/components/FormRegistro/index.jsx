@@ -5,7 +5,7 @@ import './styles.css'
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/Auth/context";
 export const FormRegistro = () => {
-  const { authState, authDispatch } = useContext(AuthContext)
+  const { authDispatch } = useContext(AuthContext)
   const email = useRef(null)
   const password = useRef(null)
   const password_confirmation = useRef(null)
