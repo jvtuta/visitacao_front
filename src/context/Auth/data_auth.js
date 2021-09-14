@@ -4,7 +4,7 @@ export const data_auth = {
     authenticated: false,
     jwt_token: '',
     loading: false,
-    teste: 'testse'
+    csrf_token: ''
 }
 
 export const ip_srv = '44.196.76.76'

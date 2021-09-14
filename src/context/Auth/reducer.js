@@ -9,7 +9,8 @@ export const reducer = (state, action) => {
               user: action.payload.user, 
               authenticated: true,
               jwt_token: action.payload.jwt_token,
-              loading: false
+              loading: false,
+              csrf_token: action.payload.csrf_token
             }
       }
       return;
