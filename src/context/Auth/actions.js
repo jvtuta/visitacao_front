@@ -11,6 +11,7 @@ export const Authenticate_user = async (dispatch, form_user) => {
       url: ip_srv+'/api/login',
       headers: {
            'Content-Type': 'application/x-www-form-urlencoded',
+           'Accept': 'application/json'
       },
       data: form_user
 

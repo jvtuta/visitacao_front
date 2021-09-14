@@ -7,6 +7,9 @@ import { PrivateRoute } from "./Routes/PrivateRoute";
 import "./styles/Global/bootstrap/style-min.css";
 import { Login } from "./templates/Login";
 import { Registro } from "./templates/Registro";
+import { Home } from "./templates/Home";
+import { Visitacao } from "./context/Visitacao";
+
 // import { Home } from "./templates/Home";
 
 
@@ -25,7 +28,9 @@ ReactDOM.render(
           </Route>
       
           <PrivateRoute path="/">
-            <h1>Home</h1>
+            
+            <Home />
+
           </PrivateRoute>
 
         </Switch>
