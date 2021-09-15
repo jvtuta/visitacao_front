@@ -1,30 +1,22 @@
 import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
-export const Header = (login = false) => {
+import { Link } from "react-router-dom"
+export const Header = ({login = false}) => {
   return (
     <Container fluid className="p-0 mb-5">
       <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand href="#home">Controle de visitações</Navbar.Brand>
-          {!login && (
+          {login && (
             <>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                  <Nav.Link href="#home">Home</Nav.Link>
-                  <Nav.Link href="#link">Link</Nav.Link>
-                  <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">
-                      Action
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">
-                      Another action
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">
-                      Something
-                    </NavDropdown.Item>
+                <Nav className="ms-auto">
+                  <NavDropdown title="Opções" id="basic-nav-dropdown">
+                      <Link to="" className="dropdown-item">Cadastro de visitadores</Link>
+                      <Link to="" className="dropdown-item">Cadastro de visitações</Link>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">
-                      Separated link
+                    <NavDropdown.Item href="#action/3.2">
+                      Logout
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>

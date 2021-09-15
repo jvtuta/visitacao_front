@@ -1,7 +1,7 @@
 import "./style.css";
 import { Header } from "../../components/Header";
 import { Container } from "react-bootstrap";
-import { Visitacao } from "../../components/Visitacao";
+import { Visitador } from "../../components/Visitador";
 import { useContext, useEffect } from "react";
 import { VisitacaoContext } from "../../context/Visitacao/context";
 import { load_visitacao } from "../../context/Visitacao/actions";
@@ -14,11 +14,9 @@ export const Home = () => {
   console.log(stateVisitacao)
   return (
     <>
-      <Header Login="false" />
+      <Header login="true" />
       <Container>
-        {/* Renderizar cada visitacao */}
-        <Visitacao />
-        
+        <Visitador />
       </Container>
     </>
   );
