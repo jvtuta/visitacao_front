@@ -1,5 +1,5 @@
 import * as types from "./types";
-import { ip_srv } from "./data_auth";
+import { srv_api } from "./data_auth";
 import axios from "axios";
 
 export const Authenticate_user = async (dispatch, form_user) => {
@@ -8,7 +8,7 @@ export const Authenticate_user = async (dispatch, form_user) => {
   try {
     const response = await (await axios({
       method: 'post',
-      url: ip_srv+'login',
+      url: srv_api+'login',
       headers: {
            'Content-Type': 'application/x-www-form-urlencoded',
            'Accept': 'application/json'
@@ -32,7 +32,7 @@ export const Register_user = async (dispatch, form_user) => {
   try {
     const response = await( await axios({
       method: 'post',
-      url: ip_srv+'register',
+      url: srv_api+'register',
       headers: {
            'Content-Type': 'application/x-www-form-urlencoded',
            'Accept': 'application/json'

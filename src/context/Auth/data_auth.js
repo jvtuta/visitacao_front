@@ -7,4 +7,4 @@ export const data_auth = {
     csrf_token: ''
 }
 
-export const ip_srv = 'https://44.196.76.76/api/v1/'
+export const srv_api = 'https://visitacoes.online//api/v1/'
