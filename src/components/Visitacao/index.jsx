@@ -1,5 +1,17 @@
-
+import { Row, Col } from "react-bootstrap"
+import { DivSearch } from "../Div.Search"
 export const Visitacao = () => {
-    return <h1>Visitacao</h1>
+    return (
+        <>  
+            <Row>
+                <DivSearch />
+            </Row>
+            <Row>
+                <Col>
+                    
+                </Col>
+            </Row>
+        </>
+    )
     
 }

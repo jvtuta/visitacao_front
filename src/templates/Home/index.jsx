@@ -7,11 +7,9 @@ export const Home = () => {
     <>
       <Header Login="false" />
       <Container>
-        <Row className="justify-content-center">
-          <Col>
-            <Visitacao />
-          </Col>
-        </Row>
+        
+        <Visitacao />
+        
       </Container>
     </>
   );
