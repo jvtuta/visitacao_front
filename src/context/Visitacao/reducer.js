@@ -6,7 +6,7 @@ export const reducer = (state, action) => {
         case types.SUCCESS_VISITACAO:
             return {
                 ...state, 
-                visitacoes: action.payload.user, 
+                visitacoes: action.payload.visitacoes, 
                 loading:false
             }
         default:

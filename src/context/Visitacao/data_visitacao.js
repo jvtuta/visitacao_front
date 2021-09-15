@@ -1,5 +1,5 @@
 export const data_visitacao = {
     visitacoes:[],
-    loading: false,
+    loading: true,
     feedback: ''
 }
