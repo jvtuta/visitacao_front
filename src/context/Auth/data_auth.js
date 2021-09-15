@@ -7,4 +7,4 @@ export const data_auth = {
     csrf_token: ''
 }
 
-export const srv_api = 'https://visitacoes.online//api/v1/'
+export const srv_api = 'https://visitacoes.online/api/v1/'
