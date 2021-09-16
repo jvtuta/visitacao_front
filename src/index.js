@@ -8,6 +8,7 @@ import "./styles/Global/bootstrap/style-min.css";
 import { Login } from "./templates/Login";
 import { Registro } from "./templates/Registro";
 import { Home } from "./templates/Home";
+import { VisitadorCadastro } from "./templates/VisitadoresCadastro";
 import { VisitacaoProvider } from "./context/Visitacao";
 
 // import { Home } from "./templates/Home";
@@ -24,13 +25,17 @@ ReactDOM.render(
           <Route path="/registrar" exact>
             <Registro />
           </Route>
-
-          <VisitacaoProvider>
+        </Switch>
+        <VisitacaoProvider>
+          <Switch>
+            <PrivateRoute path="/visitadores-cadastro" exact>
+              <VisitadorCadastro />
+            </PrivateRoute>
             <PrivateRoute path="/">
               <Home />
             </PrivateRoute>
-          </VisitacaoProvider>
-        </Switch>
+          </Switch>
+        </VisitacaoProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>,

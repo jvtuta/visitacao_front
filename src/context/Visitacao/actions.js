@@ -30,3 +30,7 @@ export const load_visitacao = async (dispatch) => {
 export const cadastrar_visitacao = (dispatch, form_visitacao) => {
   dispatch({ type: types.TRYING_REGISTRATION });
 };
+
+export const cadastrar_visitador = (disptach, form_visitador) => {
+  disptach({ type: types.TRYING_REGISTRATION})
+}

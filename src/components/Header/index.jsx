@@ -12,7 +12,7 @@ export const Header = ({login = false}) => {
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ms-auto">
                   <NavDropdown title="Opções" id="basic-nav-dropdown">
-                      <Link to="" className="dropdown-item">Cadastro de visitadores</Link>
+                      <Link to="/visitadores-cadastro" className="dropdown-item">Cadastro de visitadores</Link>
                       <Link to="" className="dropdown-item">Cadastro de visitações</Link>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#action/3.2">
