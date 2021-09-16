@@ -15,10 +15,10 @@ export const load_visitador = async (dispatch) => {
     },
   };
   try {
-    const respose = await(await axios(config)).data;
+    const response = await(await axios(config)).data;
     dispatch({
       type: types.SUCCESS_LOADING_VISITADOR,
-      payload: { visitadores: { ...respose } },
+      payload: { visitadores: [...response] },
     });
   } catch (err) {
     dispatch({ type: types.ERR_LOADING_VISITADOR, payload: { err } });

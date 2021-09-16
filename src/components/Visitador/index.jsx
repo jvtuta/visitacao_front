@@ -2,11 +2,12 @@ import { useContext } from "react";
 import { Table } from "react-bootstrap";
 import { VisitadorContext } from "../../context/Visitador/context";
 import { FormVisitador } from "../FormVisitador";
-
+import {RowVisitador} from "../RowVisitador"
 
 export const Visitador = () => {
   const{visitadorState,visitadorDispatch}=useContext(VisitadorContext)
-  console.log(visitadorState)
+  const { visitadores } = visitadorState
+  console.log(visitadores)
   return (
     <>
       <h2>Visitadores</h2>
@@ -23,6 +24,15 @@ export const Visitador = () => {
             <th>Locais de atendimento</th>
           </tr>
         </thead>
+        <tbody>
+          {visitadores.map((e)=>{ 
+            return(
+              <>
+                <RowVisitador visitador={e} />
+              </>
+             )
+          })}
+        </tbody>
       </Table>
       {/* <FormVisitador /> */}
     </>
