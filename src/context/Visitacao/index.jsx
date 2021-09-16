@@ -5,7 +5,7 @@ import { reducer } from "./reducer";
 import { useReducer } from "react";
 
 export const VisitacaoProvider = ({ children }) => {
-  const { visitacaoState, visitacaoDispatch } = useReducer(
+  const [ visitacaoState, visitacaoDispatch ] = useReducer(
     reducer,
     data_visitacao
   );

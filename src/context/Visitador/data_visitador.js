@@ -1,4 +1,4 @@
-export const data_visitadores = {
+export const data_visitador = {
     visitadores: [],
     loading: true
 }

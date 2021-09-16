@@ -3,8 +3,8 @@ import axios from "axios";
 import { srv_api, data_auth } from "../Auth/data_auth";
 const { jwt_token } = data_auth;
 
-export const loadVisitadores = (disptach) => {
-  disptach({ type: types.LOADING_VISITADORES });
+export const load_visitador = async (dispatch) => {
+  dispatch({ type: types.LOADING_VISITADOR });
   const config = {
     method: "GET",
     url: srv_api + "visitador",
@@ -16,11 +16,11 @@ export const loadVisitadores = (disptach) => {
   };
   try {
     const respose = await(await axios(config)).data;
-    disptach({
-      type: types.SUCCESS_LOADING_VISITADORES,
+    dispatch({
+      type: types.SUCCESS_LOADING_VISITADOR,
       payload: { visitadores: { ...respose } },
     });
   } catch (err) {
-    disptach({ type: types.ERR_LOADING_VISITADORES, payload: { err } });
+    dispatch({ type: types.ERR_LOADING_VISITADOR, payload: { err } });
   }
 };

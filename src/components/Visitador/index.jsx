@@ -1,7 +1,12 @@
+import { useContext } from "react";
 import { Table } from "react-bootstrap";
+import { VisitadorContext } from "../../context/Visitador/context";
 import { FormVisitador } from "../FormVisitador";
 
+
 export const Visitador = () => {
+  const{visitadorState,visitadorDispatch}=useContext(VisitadorContext)
+  console.log(visitadorState)
   return (
     <>
       <h2>Visitadores</h2>
@@ -19,7 +24,7 @@ export const Visitador = () => {
           </tr>
         </thead>
       </Table>
-      <FormVisitador />
+      {/* <FormVisitador /> */}
     </>
   );
 };

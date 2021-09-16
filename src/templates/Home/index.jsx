@@ -3,15 +3,14 @@ import { Header } from "../../components/Header";
 import { Container } from "react-bootstrap";
 import { Visitador } from "../../components/Visitador";
 import { useContext, useEffect } from "react";
-
-import { load_visitacao } from "../../context/Visitacao/actions";
+import { VisitadorContext } from "../../context/Visitador/context";
+import { load_visitador } from "../../context/Visitador/actions";
 export const Home = () => {
-  const{stateVisitacao, dispatchVisitacao} =useContext(VisitacaoContext)
-  
+  const { visitadorState, visitadorDispatch } = useContext(VisitadorContext)
   useEffect(()=>{
-    load_visitacao(dispatchVisitacao)
+    load_visitador(visitadorDispatch)
   }, [])
-  console.log(stateVisitacao)
+
   return (
     <>
       <Header login="true" />
