@@ -1,16 +1,19 @@
 import { useContext } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import { VisitadorContext } from "../../context/Visitador/context";
 import { FormVisitador } from "../FormVisitador";
 import {RowVisitador} from "../RowVisitador"
 
-export const Visitador = () => {
-  const{visitadorState,visitadorDispatch}=useContext(VisitadorContext)
+export const Visitador = ({onclick}) => {
+  const{visitadorState, visitadorDispatch}=useContext(VisitadorContext)
   const { visitadores } = visitadorState
   console.log(visitadores)
   return (
     <>
-      <h2>Visitadores</h2>
+      <div className="">
+        <h4 className="d-inline border-bottom py-2">Visitadores</h4>
+        <Button onClick={()=>onclick(true)} variant="success" className="float-end" size="sm">Cadastrar visitação</Button>
+      </div>
       <Table size="sm" responsive="lg" >
         <thead>
           <tr>
@@ -25,10 +28,10 @@ export const Visitador = () => {
           </tr>
         </thead>
         <tbody>
-          {visitadores.map((e)=>{ 
+          {visitadores.length > 0 &&visitadores.map((e)=>{ 
             return(
               <>
-                <RowVisitador visitador={e} />
+                <RowVisitador visitador={e} key={e.id} />
               </>
              )
           })}
