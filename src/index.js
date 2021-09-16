@@ -8,7 +8,7 @@ import "./styles/Global/bootstrap/style-min.css";
 import { Login } from "./templates/Login";
 import { Registro } from "./templates/Registro";
 import { Home } from "./templates/Home";
-import { VisitadorCadastro } from "./templates/VisitadoresCadastro";
+
 
 //Contexts
 import { AuthProvider } from "./context/Auth";

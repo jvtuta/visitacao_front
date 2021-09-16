@@ -10,7 +10,7 @@ export const VisitadoresProvider = ({ children }) => {
   );
   return (
     <VisitadoresContext.Provider
-      value={(visitadoresState, visitadoresDisptach)}
+      value={{visitadoresState, visitadoresDisptach}}
     >
       {children}
     </VisitadoresContext.Provider>
