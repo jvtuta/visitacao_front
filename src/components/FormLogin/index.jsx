@@ -3,6 +3,7 @@ import { Authenticate_user } from "../../context/Auth/actions";
 import { AuthContext } from "../../context/Auth/context";
 import { Card, Form, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
+import { Feedback } from "../Feedback"
 import './style.css'
 
 export const FormLogin = () => {
@@ -10,17 +11,17 @@ export const FormLogin = () => {
   const email = useRef(null)
   const password = useRef(null)
   const history = useHistory()
-
+  console.log(authState)
   function handleBlogin() {
     const usuario = new URLSearchParams({email: email.current.value, password: password.current.value});
     Authenticate_user(authDispatch, usuario)
   }
   
   useEffect(()=>{
-    if(authState.authenticated) {
+    if(localStorage.getItem('token')) {
       history.push('/')
     }
-  },[authState.authenticated, history])
+  },[history])
 
   return (
     <Card>
@@ -52,6 +53,9 @@ export const FormLogin = () => {
             <div>
                 <span>Carregando...</span>
             </div>
+        )}
+        {authState.feedback&&(
+          <Feedback feedback={authState.feedback} success={false} />
         )}
         
       </Card.Footer>

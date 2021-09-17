@@ -30,7 +30,6 @@ ReactDOM.render(
 
           {/* VisitadorProvider */}
           {/* VisitacoesProvider */}
-          {/* Private Routes */}
 
           {/* Ultima rota */}
           <VisitadorProvider>

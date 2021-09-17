@@ -8,7 +8,6 @@ export const reducer = (state, action) => {
             return {
               ...state, 
               user: action.payload.user, 
-              authenticated: true,
               jwt_token: action.payload.jwt_token,
               loading: false,
               csrf_token: action.payload.csrf_token
@@ -16,15 +15,12 @@ export const reducer = (state, action) => {
           } else {
             return {
               ...state, 
-              authenticated: false,
               jwt_token: false,
               loading: false,
               csrf_token: false,
               feedback: 'Falha ao realizar login, verifique a senha ou usuário'
             }
           }
-          
-      break
     case types.TRYING_AUTHENCATION:
       //tela de carregamento
       return { ...state, loading: true }

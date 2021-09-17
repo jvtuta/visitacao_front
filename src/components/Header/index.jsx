@@ -1,11 +1,12 @@
 import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom"
+import { useHistory } from "react-router"
 export const Header = ({login = false}) => {
   return (
     <Container fluid className="p-0 mb-5">
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">Controle de visitações</Navbar.Brand>
+          <Navbar.Brand style={{cursor: "pointer"}} >Controle de visitações</Navbar.Brand>
           {login && (
             <>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
