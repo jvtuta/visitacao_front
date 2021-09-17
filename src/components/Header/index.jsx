@@ -1,6 +1,5 @@
 import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom"
-import { useHistory } from "react-router"
 export const Header = ({login = false}) => {
   return (
     <Container fluid className="p-0 mb-5">
@@ -16,7 +15,7 @@ export const Header = ({login = false}) => {
                       <Link to="/visitadores-cadastro" className="dropdown-item">Cadastro de visitadores</Link>
                       <Link to="" className="dropdown-item">Cadastro de visitações</Link>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.2">
+                    <NavDropdown.Item href="/login">
                       Logout
                     </NavDropdown.Item>
                   </NavDropdown>

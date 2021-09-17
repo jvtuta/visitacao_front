@@ -7,7 +7,6 @@ import {RowVisitador} from "../RowVisitador"
 export const Visitador = ({onclick}) => {
   const{visitadorState, visitadorDispatch}=useContext(VisitadorContext)
   const { visitadores } = visitadorState
-  console.log(visitadores)
   return (
     <>
       <div className="">

@@ -4,7 +4,7 @@ export const FormVisitador = () => {
   function register() {}
   return (
     <Card>
-      <Card.Header>Registrar</Card.Header>
+      <Card.Header>Cadastro de visitadores</Card.Header>
       <Card.Body>
         <Form>
           <Form.Group controlId="formGroupNome">

@@ -7,6 +7,7 @@ import { VisitadorContext } from "../../context/Visitador/context";
 import { load_visitador } from "../../context/Visitador/actions";
 import { Loading } from "../../components/Loading";
 import { Feedback } from "../../components/Feedback";
+import { FormVisitacao } from "../../components/FormVisitacao";
 
 export const Home = () => {
   const { visitadorState, visitadorDispatch } = useContext(VisitadorContext);
@@ -23,11 +24,10 @@ export const Home = () => {
       
       <Container>
         <Row>
-          
           {visitadorState.feedback && (
             <Feedback feedback={visitadorState.feedback} success={false} />  
         )}
-          {cadVisitacao && <h1>teste de form de cadastro de visitações</h1>}
+          {cadVisitacao && <FormVisitacao />}
           {visitadorState.visitadores.length > 0 && !cadVisitacao && (
             <Visitador onclick={setCadVisitacao} />
           )}

@@ -11,7 +11,6 @@ export const FormLogin = () => {
   const email = useRef(null)
   const password = useRef(null)
   const history = useHistory()
-  console.log(authState)
   function handleBlogin() {
     const usuario = new URLSearchParams({email: email.current.value, password: password.current.value});
     Authenticate_user(authDispatch, usuario)
@@ -21,7 +20,7 @@ export const FormLogin = () => {
     if(localStorage.getItem('token')) {
       history.push('/')
     }
-  },[history])
+  },[history, authState.jwt_token])
 
   return (
     <Card>

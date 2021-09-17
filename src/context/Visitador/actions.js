@@ -1,6 +1,9 @@
 import * as types from "./types";
 import axios from "axios";
 import { srv_api } from "../Auth/data_auth";
+import { data_auth } from "../Auth/data_auth";
+
+
 
 export const load_visitador = async (dispatch) => {
   dispatch({ type: types.LOADING_VISITADOR });
@@ -20,7 +23,12 @@ export const load_visitador = async (dispatch) => {
       payload: { visitadores: [...response] },
     });
   } catch (err) {
+
     if(err.toJSON().message.includes('401')) {
+
+      localStorage.setItem('token', '')
+      data_auth.jwt_token = '';
+
       return dispatch({ type: types.ERR_LOADING_VISITADOR, payload: { feedback: 'Usuário não autenticado, realizar o login' } });
     }
     return dispatch({ type: types.ERR_LOADING_VISITADOR, payload: { feedback: err } });
