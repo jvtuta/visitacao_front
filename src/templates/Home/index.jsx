@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { VisitadorContext } from "../../context/Visitador/context";
 import { load_visitador } from "../../context/Visitador/actions";
 import { Loading } from "../../components/Loading";
+import { Feedback } from "../../components/Feedback";
 
 export const Home = () => {
   const { visitadorState, visitadorDispatch } = useContext(VisitadorContext);
@@ -19,12 +20,18 @@ export const Home = () => {
 
       <Header login="true" />
       {visitadorState.loading && <Loading /> }
+      
       <Container>
         <Row>
+          
+          {visitadorState.feedback && (
+            <Feedback feedback={visitadorState.feedback} success={false} />  
+        )}
           {cadVisitacao && <h1>teste de form de cadastro de visitações</h1>}
           {visitadorState.visitadores.length > 0 && !cadVisitacao && (
             <Visitador onclick={setCadVisitacao} />
           )}
+          
           
         </Row>
       </Container>

@@ -1,4 +1,5 @@
 export const data_visitador = {
     visitadores: [],
-    loading: true
+    loading: true,
+    feedback: ''
 }

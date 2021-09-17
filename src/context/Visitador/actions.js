@@ -20,7 +20,9 @@ export const load_visitador = async (dispatch) => {
       payload: { visitadores: [...response] },
     });
   } catch (err) {
-    dispatch({ type: types.ERR_LOADING_VISITADOR, payload: { err } });
-    window.location.reload()
+    if(err.toJSON().message.includes('401')) {
+      return dispatch({ type: types.ERR_LOADING_VISITADOR, payload: { feedback: 'Usuário não autenticado, realizar o login' } });
+    }
+    return dispatch({ type: types.ERR_LOADING_VISITADOR, payload: { feedback: err } });
   }
 };

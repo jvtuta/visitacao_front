@@ -20,7 +20,6 @@ export const load_visitacao = async (dispatch) => {
       payload: { visitacoes: { ...response } },
     });
   } catch (err) {
-    window.location.reload()
     dispatch({});
   }
 };
