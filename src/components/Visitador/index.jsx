@@ -30,9 +30,9 @@ export const Visitador = ({onclick}) => {
         <tbody>
           {visitadores.length > 0 &&visitadores.map((e)=>{ 
             return(
-              <>
-                <RowVisitador visitador={e} key={e.id} />
-              </>
+              <tr key={e.id}>
+                <RowVisitador visitador={e} />
+              </tr>
              )
           })}
         </tbody>

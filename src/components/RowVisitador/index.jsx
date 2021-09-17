@@ -1,14 +1,14 @@
-export const RowVisitador = ({ visitador }) => {
+export const RowVisitador = ({ visitador, k }) => {
   return (
-    <tr key={visitador.id}>
+    <>
       <td>{visitador.nome}</td>
       <td>{visitador.crm !== null ? visitador.crm : visitador.crn}</td>
       <td>{visitador.especialidade}</td>
       <td>{visitador.email}</td>
       <td>{visitador.secretarias}</td>
-      <td>teste</td>
-      <td>teste</td>
-      <td>teste</td>
-    </tr>
+      <td>{visitador.data_de_nascimento}</td>
+      <td>{visitador.telefone}</td>
+      <td>{visitador.locais_de_atendimento}</td>
+    </>
   );
 };

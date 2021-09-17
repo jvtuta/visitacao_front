@@ -27,8 +27,7 @@ ReactDOM.render(
           <Route path="/registrar" exact>
             <Registro />
           </Route>
-        </Switch>
-        <Switch>
+
           {/* VisitadorProvider */}
           {/* VisitacoesProvider */}
           {/* Private Routes */}

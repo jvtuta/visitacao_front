@@ -3,16 +3,27 @@ export const reducer = (state, action) => {
   switch (action.type) {
     case types.SUCCESS_AUTHENTICATION:
       //atribuir valor da resposta ao estado
-      if(action.payload.authenticated) {
-          return {
+          if(action.payload.jwt_token) {
+            localStorage.setItem('token', action.payload.jwt_token);
+            return {
               ...state, 
               user: action.payload.user, 
-              authenticated: action.payload.authenticated,
+              authenticated: true,
               jwt_token: action.payload.jwt_token,
               loading: false,
               csrf_token: action.payload.csrf_token
             }
-      }
+          } else {
+            return {
+              ...state, 
+              authenticated: false,
+              jwt_token: false,
+              loading: false,
+              csrf_token: false,
+              feedback: 'Falha ao realizar login, verifique a senha ou usuário'
+            }
+          }
+          
       break
     case types.TRYING_AUTHENCATION:
       //tela de carregamento

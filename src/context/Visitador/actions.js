@@ -1,7 +1,6 @@
 import * as types from "./types";
 import axios from "axios";
-import { srv_api, data_auth } from "../Auth/data_auth";
-const { jwt_token } = data_auth;
+import { srv_api } from "../Auth/data_auth";
 
 export const load_visitador = async (dispatch) => {
   dispatch({ type: types.LOADING_VISITADOR });
@@ -9,7 +8,7 @@ export const load_visitador = async (dispatch) => {
     method: "GET",
     url: srv_api + "visitador",
     headers: {
-      Authorization: "bearer " + jwt_token,
+      Authorization: "bearer " + localStorage.getItem('token'),
       "Content-Type": "application/json",
       Accept: "application/json",
     },
@@ -22,5 +21,6 @@ export const load_visitador = async (dispatch) => {
     });
   } catch (err) {
     dispatch({ type: types.ERR_LOADING_VISITADOR, payload: { err } });
+    window.location.reload()
   }
 };

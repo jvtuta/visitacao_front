@@ -5,8 +5,9 @@ export const reducer = (state, action) => {
             return {...state, loading:true}
         case types.SUCCESS_LOADING_VISITADOR:
             return {...state, visitadores: action.payload.visitadores, loading: false}
+        case types.ERR_LOADING_VISITADOR:
+            return { ...state }
         default:
             return
     }
-    return {...state}
 }

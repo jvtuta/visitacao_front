@@ -1,7 +1,6 @@
 import * as types from "./types";
 import axios from "axios";
-import { srv_api, data_auth } from "../Auth/data_auth";
-const { jwt_token } = data_auth;
+import { srv_api } from "../Auth/data_auth";
 
 export const load_visitacao = async (dispatch) => {
   dispatch({ type: types.LOADING_VISITACOES });
@@ -9,7 +8,7 @@ export const load_visitacao = async (dispatch) => {
     method: "GET",
     url: srv_api + "visitacao",
     headers: {
-      Authorization: "bearer " + jwt_token,
+      Authorization: "bearer " + localStorage.getItem('token'),
       "Content-Type": "application/json",
       Accept: "application/json",
     },
@@ -21,7 +20,7 @@ export const load_visitacao = async (dispatch) => {
       payload: { visitacoes: { ...response } },
     });
   } catch (err) {
-    console.log(err);
+    window.location.reload()
     dispatch({});
   }
 };
