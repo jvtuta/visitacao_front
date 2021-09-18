@@ -1,9 +1,9 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Form, Row, Col, Button, InputGroup } from "react-bootstrap";
 import { VisitadorContext } from "../../context/Visitador/context";
 
 export const FormVisitacao = () => {
-  const { visitadorState, visitadorDispatch } = useContext(VisitadorContext);
+  const { visitadorState } = useContext(VisitadorContext);
   const { visitadores } = visitadorState;
   const [visitador, setVisitador] = useState([]);
   const cr = useRef(null);
@@ -12,7 +12,7 @@ export const FormVisitacao = () => {
     
     if(conselho_regional.length === 4) {
       setVisitador(visitadores.filter((e)=>{
-        return e[tipo.toLowerCase()] == conselho_regional
+        return e[tipo.toLowerCase()] === conselho_regional
       }))
       return
     } 
@@ -46,7 +46,7 @@ export const FormVisitacao = () => {
           </Form.Group>
         </Row>
       {/* Se não encontrar o visitador com o crm especificado então exibir ficha de cadastro de visitador */}
-      {visitador.length == 0 &&(
+      {visitador.length === 0 &&(
         <>
           <Row>
           <Form.Group as={Col} controlId="formGroupNome">

@@ -1,33 +1,33 @@
-import { Card, Form, Button} from "react-bootstrap";
+import { Card, Form, Button } from "react-bootstrap";
 import { Register_user } from "../../context/Auth/actions";
 import { Link } from "react-router-dom";
-import './styles.css'
+import "./styles.css";
 import { useContext, useRef, useState } from "react";
-import { AuthContext } from "../../context/Auth/context";
-export const FormRegistro = () => {
-  const { authDispatch } = useContext(AuthContext)
-  const email = useRef(null)
-  const password = useRef(null)
-  const password_confirmation = useRef(null)
-  const name = useRef(null)
-  const [verifyPass, setVerifyPass] = useState()
-  function register () {
 
-    if(password.current.value === password_confirmation.current.value) {
+import { AuthContext } from "../../context/Auth/context";
+import { Feedback } from "../Feedback";
+export const FormRegistro = () => {
+  const { authState, authDispatch } = useContext(AuthContext);
+  const email = useRef(null);
+  const password = useRef(null);
+  const password_confirmation = useRef(null);
+  const name = useRef(null);
+  const [verifyPass, setVerifyPass] = useState();
+  function register() {
+    if (password.current.value === password_confirmation.current.value) {
       const params = new URLSearchParams({
         email: email.current.value,
         password: password.current.value,
-        name: name.current.value
-      })
-      Register_user(authDispatch, params)
+        name: name.current.value,
+      });
+      Register_user(authDispatch, params);
       return;
     } else {
-      console.log('false')
-      setVerifyPass(false)
+      console.log("false");
+      setVerifyPass(false);
       return;
     }
   }
-  
 
   return (
     <Card>
@@ -37,7 +37,6 @@ export const FormRegistro = () => {
           <Form.Group controlId="formGroupEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control
-
               ref={email}
               type="email"
               placeholder="Digite seu email"
@@ -68,12 +67,31 @@ export const FormRegistro = () => {
               placeholder="Confirme sua senha"
             ></Form.Control>
           </Form.Group>
-          <Button className="mt-3 me-3" variant="info" onClick={()=>register()}> Registrar </Button>
-          <Link to="/login" className=" mt-3 btn btn-primary">Login</Link>
+          <Button
+            className="mt-3 me-3"
+            variant="info"
+            onClick={() => register()}
+          >
+            {" "}
+            Registrar{" "}
+          </Button>
+          <Link to="/login" className=" mt-3 btn btn-primary">
+            Login
+          </Link>
         </Form>
-        {!!verifyPass && (
-          <p className="text-danger">Erro ao registrar usuário</p>
+        {authState.loading&&(
+            <div>
+                <span>Carregando...</span>
+            </div>
         )}
+        {!!verifyPass && <p className="text-danger">A senha não confere</p>}
+        {authState.feedback === true &&
+          <Feedback feedback={'Usuário cadastrado com sucesso!'} success={true} />
+        }
+        {typeof(authState.feedback === 'string' )&&
+          <Feedback feedback={authState.feedback} success={false} />
+        }
+        
       </Card.Body>
     </Card>
   );

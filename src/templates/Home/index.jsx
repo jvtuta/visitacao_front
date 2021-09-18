@@ -11,10 +11,10 @@ import { FormVisitacao } from "../../components/FormVisitacao";
 
 export const Home = () => {
   const { visitadorState, visitadorDispatch } = useContext(VisitadorContext);
-  const [cadVisitacao, setCadVisitacao] = useState(false);
+  const [ cadVisitacao, setCadVisitacao] = useState(false);
   useEffect(() => {
     load_visitador(visitadorDispatch);
-  }, []);
+  }, [visitadorDispatch]);
 
   return (
     <>

@@ -26,13 +26,13 @@ export const reducer = (state, action) => {
       return { ...state, loading: true }
     case types.ERR_LOGON:
       //Caso der erro
-      return {...state, feedback: action.payload, loading: false};
+      return {...state, feedback: action.payload.feedback, loading: false};
     case types.TRYING_REGISTRATION:
       return { ...state, loading: true }
     case types.SUCCESS_REGISTRATION:
-      return { ...state, loading: false, feedback: 'Usuário cadastrado com sucesso!' }
+      return { ...state, loading: false, feedback: true }
     case types.ERR_REGISTRATION: 
-      return { ...state, loading: false, feedback: 'Erro ao cadastrar usuário'}
+      return { ...state, loading: false, feedback: action.payload.feedback}
     default:
       return;
   }

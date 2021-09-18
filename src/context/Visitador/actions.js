@@ -23,14 +23,19 @@ export const load_visitador = async (dispatch) => {
       payload: { visitadores: [...response] },
     });
   } catch (err) {
-
-    if(err.toJSON().message.includes('401')) {
+    const message = err.toJSON().message
+    
+    if(message.includes('401')) {
 
       localStorage.setItem('token', '')
       data_auth.jwt_token = '';
 
       return dispatch({ type: types.ERR_LOADING_VISITADOR, payload: { feedback: 'Usuário não autenticado, realizar o login' } });
+    } 
+    if(message.includes('Network Error')) {
+
+      return dispatch({ type: types.ERR_LOADING_VISITADOR, payload: { feedback: 'Problema ao se conectar à API contate o administrador' } });
     }
-    return dispatch({ type: types.ERR_LOADING_VISITADOR, payload: { feedback: err } });
+    return dispatch({ type: types.ERR_LOADING_VISITADOR, payload: { feedback: 'ERRO. Contate o administrador' } });
   }
 };
