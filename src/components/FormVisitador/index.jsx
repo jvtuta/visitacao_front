@@ -24,7 +24,7 @@ export const FormVisitador = ({ read, place, registrar = false }, {children}) =>
       <Row>
         <Form.Group as={Col}>
           <Form.Label>Data de nascimento</Form.Label>
-          <Form.Control type="date" readOnly={read} />
+          <Form.Control type="date" readOnly={read}  />
         </Form.Group>
         <Form.Group as={Col} controlId="formGroupEmail">
           <Form.Label>Email</Form.Label>

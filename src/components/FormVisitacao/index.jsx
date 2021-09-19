@@ -23,9 +23,20 @@ export const FormVisitacao = () => {
     if (conselho_regional.length > 4) {
       return (cr_val.current.value = "");
     }
+
+    if (visitador.length > 0 && conselho_regional.length < 4) {
+      return setVisitador([])
+    }
   }
+
+  function registrar() {
+
+  }
+
   return (
     <Form>
+      <h4 className="mt-4">Visitador: </h4>
+
       <Row>
         <Form.Group as={Col}>
           <Col md={4}>
@@ -46,8 +57,34 @@ export const FormVisitacao = () => {
           </Col>
         </Form.Group>
       </Row>
-        {visitador.length === 0 &&(<FormVisitador read={false}/>)}
-        {visitador.length > 0 &&(<FormVisitador read={true} place={visitador[0]} />)}
+        {visitador.length === 0 &&(<FormVisitador read={false} />)}
+        {visitador.length > 0 &&(<FormVisitador read={true} place={visitador[0]} registrar={registrar()}/>)}
+        <h4 className="mt-4">Visitações: </h4>
+        <Row className="">
+          <Col md={3}>
+          <Form.Group as={Col}>
+            <Form.Label>Data</Form.Label>
+            <Form.Control type="date" />
+          </Form.Group>
+          </Col>
+        </Row>
+        <Row>
+          <Form.Group as={Col}>
+              <Form.Label>Comentários</Form.Label>
+              <Form.Control type="textarea" />
+
+          </Form.Group>
+        </Row>
+        <Row>
+          <Form.Group as={Col}>
+                <Form.Label>Amostras</Form.Label>
+                <Form.Control type="text" />
+          </Form.Group>
+          <Form.Group as={Col}>
+                <Form.Label>Trabalhos</Form.Label>
+                <Form.Control type="text" />
+          </Form.Group>
+        </Row>
     </Form>
   );
 };

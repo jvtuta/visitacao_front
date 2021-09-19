@@ -2,7 +2,7 @@ import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom"
 export const Header = ({login = false}) => {
   return (
-    <Container fluid className="p-0 mb-5">
+    <Container fluid className="p-0 mb-3">
       <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand style={{cursor: "pointer"}} >Controle de visitações</Navbar.Brand>
