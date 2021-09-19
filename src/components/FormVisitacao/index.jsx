@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from "react";
-import { Form, Row, Col, Button, InputGroup } from "react-bootstrap";
+import { Form, Row, Col, InputGroup } from "react-bootstrap";
 import { VisitadorContext } from "../../context/Visitador/context";
 import { FormVisitador } from "../FormVisitador";
 
