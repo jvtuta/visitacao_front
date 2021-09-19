@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { Table, Button } from "react-bootstrap";
 import { VisitadorContext } from "../../context/Visitador/context";
-import {RowVisitador} from "../RowVisitador"
+import { RowVisitador }  from "../RowVisitador"
 
-export const Visitador = ({onclick}) => {
+export const Visitadores = ({onclick}) => {
   const { visitadorState } = useContext(VisitadorContext)
   const { visitadores } = visitadorState
   return (

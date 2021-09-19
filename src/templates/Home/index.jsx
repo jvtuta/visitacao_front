@@ -1,7 +1,7 @@
 import "./style.css";
 import { Header } from "../../components/Header";
 import { Container, Row } from "react-bootstrap";
-import { Visitador } from "../../components/Visitador";
+import { Visitadores } from "../../components/Visitadores";
 import { useContext, useEffect, useState } from "react";
 import { VisitadorContext } from "../../context/Visitador/context";
 import { load_visitador } from "../../context/Visitador/actions";
@@ -29,7 +29,7 @@ export const Home = () => {
         )}
           {cadVisitacao && <FormVisitacao />}
           {visitadorState.visitadores.length > 0 && !cadVisitacao && (
-            <Visitador onclick={setCadVisitacao} />
+            <Visitadores onclick={setCadVisitacao} />
           )}
           
           
