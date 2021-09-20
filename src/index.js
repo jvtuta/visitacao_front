@@ -13,6 +13,7 @@ import { VisitacaoProvider } from "./context/Visitacao";
 import { VisitadorProvider } from "./context/Visitador";
 //Contexts
 import { AuthProvider } from "./context/Auth";
+import { Visitacao } from "./templates/Visitacao";
 
 // import { Home } from "./templates/Home";
 
@@ -35,9 +36,14 @@ ReactDOM.render(
           {/* Ultima rota */}
           <VisitadorProvider>
             <VisitacaoProvider> 
+              <Switch>
+              <PrivateRoute path="/visitacoes/:id" exact>
+                <Visitacao />
+              </PrivateRoute>
               <PrivateRoute path="/">
                 <Home />
               </PrivateRoute>
+              </Switch>
             </VisitacaoProvider>
           </VisitadorProvider>
         </Switch>

@@ -1,4 +1,4 @@
-export const RowVisitador = ({ visitador, k }) => {
+export const RowVisitador = ({ visitador }) => {
   return (
     <>
       <td>{visitador.nome}</td>
