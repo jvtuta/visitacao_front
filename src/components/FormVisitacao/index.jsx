@@ -1,10 +1,13 @@
 import { useContext, useRef, useState } from "react";
 import { Form, Row, Col, InputGroup } from "react-bootstrap";
+import { register_visitador } from "../../context/Visitador/actions";
 import { VisitadorContext } from "../../context/Visitador/context";
 import { FormVisitador } from "../FormVisitador";
 
+
+
 export const FormVisitacao = () => {
-  const { visitadorState } = useContext(VisitadorContext);
+  const { visitadorState, visitadorDispatch } = useContext(VisitadorContext);
   const { visitadores } = visitadorState;
   const [visitador, setVisitador] = useState([]);
   const cr = useRef(null);
@@ -61,7 +64,7 @@ export const FormVisitacao = () => {
     }
   }
 
-  function registrar(e) {
+  async function registrar(e) {
     
     e.preventDefault()
     let obj
@@ -70,6 +73,7 @@ export const FormVisitacao = () => {
         ...obj,[form.current[i].name]:form.current[i].value
       }
     }
+    let id 
     if(!(visitador.length > 0)) {
       const { 
         tipo, 
@@ -85,7 +89,9 @@ export const FormVisitacao = () => {
 
       const visitador = {
         nome, 
-        conselho_regional: tipo, 
+        conselho_regional: tipo.toLowerCase(), 
+        crm: tipo.toLowerCase() == 'crm' ? cr_val : undefined,
+        crNN:
         especialidade, 
         telefone, 
         locais_de_atendimento, 
@@ -94,8 +100,11 @@ export const FormVisitacao = () => {
         observacoes, 
         data_de_nascimento
       }
+      const data = new URLSearchParams(visitador)
+      await register_visitador(visitadorDispatch,data)
+      console.log(visitadorState)
     }
-    console.log(visitador[0].id)
+    
 
     
     const data_visitador = new URLSearchParams()

@@ -13,7 +13,7 @@ export const reducer = (state,action) => {
             return {...state, feedback: 'erro', loading: false}
         case types.SUCCESS_REGISTRATION_VISITACOES:
 
-            return {...state, visitacoes: [...visitacoes, action.payload.visitacoes ], loading: false}
+            return {...state, visitacoes: action.payload.visitacoes , loading: false}
         case types.TRYING_REGISTRATION_VISITACOES:
 
             return {...state, loading: true}

@@ -49,3 +49,52 @@ export const registrar_visitacao = async ( dispatch , form_data ) => {
     })
   }
 }
+
+
+export const register_visitacao = async (dispatch, form_user) => {
+  dispatch({ type: types.TRYING_REGISTRATION_VISITACOES });
+  try {
+    const response = await (
+      await axios({
+        method: "post",
+        url: srv_api + "visitacao",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Accept: "application/json",
+        },
+        data: form_user,
+      })
+    ).data;
+    dispatch({
+      type: types.SUCCESS_REGISTRATION_VISITACOES,
+      payload: { visitacoes:{...response} },
+    });
+  } catch (err) {
+    console.log(err.toJSON())
+    const message = err.toJSON().message
+    if(message.includes('422')) {
+      return dispatch({
+        type: types.ERR_REGISTRATION_VISITACOES,
+        payload: { feedback: "Usuário ja cadastrado na base de dados"}
+      })
+    }
+    if(message.includes('500')) {
+      return dispatch({
+        type: types.ERR_REGISTRATION_VISITACOES,
+        payload: { feedback: "ERRO na API contate o administrador "}
+      })
+    }
+    if (message.includes("Network Error")) {
+      return dispatch({
+        type: types.ERR_REGISTRATION_VISITACOES,
+        payload: {
+          feedback: "ERRO ao se conectar à API contate o administrador",
+        },
+      });
+    }
+    return dispatch({
+      type: types.ERR_REGISTRATION_VISITACOES,
+      payload: { feedback: "ERRO. Contate o administrador" },
+    });
+  }
+};
