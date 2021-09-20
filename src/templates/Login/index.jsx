@@ -8,7 +8,7 @@ export function Login () {
         <Header Login="false"/>
         <Container>
             <Row className="justify-content-center">
-                <Col xs={5}>
+                <Col sm xs md={6} lg={4}>
                     
                     <FormLogin />
                 </Col>

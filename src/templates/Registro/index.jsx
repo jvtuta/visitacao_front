@@ -5,10 +5,10 @@ import { FormRegistro } from "../../components/FormRegistro";
 export const Registro = () => {
   return (
     <>
-      <Header login="true" />
+      <Header Login="false"/>
       <Container>
         <Row className="justify-content-center">
-            <Col xs={5}>
+            <Col sm xs md={6} lg={4}>
                 <FormRegistro />
             </Col>
         </Row>

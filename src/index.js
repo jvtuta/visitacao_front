@@ -9,6 +9,7 @@ import { Login } from "./templates/Login";
 import { Registro } from "./templates/Registro";
 import { Home } from "./templates/Home";
 
+import { VisitacaoProvider } from "./context/Visitacao";
 import { VisitadorProvider } from "./context/Visitador";
 //Contexts
 import { AuthProvider } from "./context/Auth";
@@ -30,12 +31,14 @@ ReactDOM.render(
 
           {/* VisitadorProvider */}
           {/* VisitacoesProvider */}
-
+          
           {/* Ultima rota */}
           <VisitadorProvider>
-            <PrivateRoute path="/">
-              <Home />
-            </PrivateRoute>
+            <VisitacaoProvider> 
+              <PrivateRoute path="/">
+                <Home />
+              </PrivateRoute>
+            </VisitacaoProvider>
           </VisitadorProvider>
         </Switch>
       </AuthProvider>
