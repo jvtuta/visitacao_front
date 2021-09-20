@@ -68,7 +68,7 @@ export const register_visitador = async (dispatch, form_user) => {
     if(message.includes('422')) {
       return dispatch({
         type: types.ERR_REGISTRATION_VISITADOR,
-        payload: { feedback: "Usuário ja cadastrado na base de dados"}
+        payload: { feedback: "Visitador ja cadastrado na base de dados"}
       })
     }
     if(message.includes('500')) {

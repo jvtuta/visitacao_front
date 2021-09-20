@@ -10,6 +10,7 @@ export const reducer = (state, action) => {
         ...state,
         visitadores: action.payload.visitadores,
         loading: false,
+        feedback: ''
       };
     case types.ERR_LOADING_VISITADOR:
 
@@ -20,13 +21,14 @@ export const reducer = (state, action) => {
         ...state,
         visitadores: [...state.visitadores, action.payload.visitador],
         loading: false,
+        feedback: ''
       };
     case types.TRYING_REGISTRATION_VISITADOR:
 
       return { ...state, loading: true };
     case types.ERR_REGISTRATION_VISITADOR:
 
-      return { ...state, loading: false, feedback: "ERRO" };
+      return { ...state, loading: false, feedback: action.payload.feedback};
     default:
       break;
   }

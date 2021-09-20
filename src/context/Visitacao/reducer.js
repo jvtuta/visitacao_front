@@ -10,16 +10,16 @@ export const reducer = (state,action) => {
             return {...state, loading: true}
         case types.ERR_LOADING_VISITACOES: 
 
-            return {...state, feedback: 'erro', loading: false}
+            return {...state, feedback: action.payload.feedback, loading: false}
         case types.SUCCESS_REGISTRATION_VISITACOES:
 
-            return {...state, visitacoes: action.payload.visitacoes , loading: false}
+            return {...state, visitacoes:[ ...state.visitacoes, action.payload.visitacoes ], loading: false, feedback: ''}
         case types.TRYING_REGISTRATION_VISITACOES:
 
             return {...state, loading: true}
         case types.ERR_REGISTRATION_VISITACOES:
 
-            return {...state, loading: false, feedback: 'ERRO'}
+            return {...state, loading: false, feedback: action.payload.feedback}
         default:
             break;
     }

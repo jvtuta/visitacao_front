@@ -11,6 +11,7 @@ export const Visitadores = ({onclick}) => {
       <div className="">
         <h4 className="d-inline border-bottom py-2">Visitadores</h4>
         <Button onClick={()=>onclick(true)} variant="success" className="float-end" size="sm">Cadastrar visitação</Button>
+        
       </div>
       <Table size="sm" responsive="lg" >
         <thead>

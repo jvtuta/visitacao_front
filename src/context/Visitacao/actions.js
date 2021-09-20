@@ -61,6 +61,7 @@ export const register_visitacao = async (dispatch, form_user) => {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
           Accept: "application/json",
+          Authorization: "bearer" + localStorage.getItem('token')
         },
         data: form_user,
       })
@@ -75,7 +76,7 @@ export const register_visitacao = async (dispatch, form_user) => {
     if(message.includes('422')) {
       return dispatch({
         type: types.ERR_REGISTRATION_VISITACOES,
-        payload: { feedback: "Usuário ja cadastrado na base de dados"}
+        payload: { feedback: "Visitacao ja cadastrado na base de dados"}
       })
     }
     if(message.includes('500')) {

@@ -80,17 +80,18 @@ export const FormVisitador = ({ read, place, children }) => {
           <Form.Control type="text"  readOnly={read} name="observacoes"/>
         </Form.Group>
         {(children)}
-
+          <div>
           <Button
-            className="mt-3 me-3"
+            
+            className="mt-3 me-3 col-md-4"
             variant="info"
 
             type="submit"
           >
             {" "}
-            Registrar{" "}
+            Salvar{" "}
           </Button>
-        
+          </div>
       </Row>
     </>
   );

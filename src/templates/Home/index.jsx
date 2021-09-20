@@ -18,7 +18,6 @@ export const Home = () => {
 
   return (
     <>
-
       <Header login="true" />
       {visitadorState.loading && <Loading /> }
       
@@ -31,8 +30,6 @@ export const Home = () => {
           {visitadorState.visitadores.length > 0 && !cadVisitacao && (
             <Visitadores onclick={setCadVisitacao} />
           )}
-          
-          
         </Row>
       </Container>
     </>
