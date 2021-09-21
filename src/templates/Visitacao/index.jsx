@@ -48,6 +48,7 @@ export const Visitacao = () => {
                     <RowVisitacao visitacao={e} />
                     <td className="col-md-1">
                       <ButtonGroup>
+                          {/* eslint-disable-next-line */}
                         <a className="btn btn-sm btn-info" target="_blank" href={"imprimir-visitacao/"+e.id}>Imprimir</a>
                         <Button variant="success" size="sm">Editar</Button>
                         <Button variant="danger" size="sm">Excluir</Button>

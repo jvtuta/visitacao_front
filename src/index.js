@@ -14,7 +14,7 @@ import { VisitadorProvider } from "./context/Visitador";
 //Contexts
 import { AuthProvider } from "./context/Auth";
 import { Visitacao } from "./templates/Visitacao";
-import { VisiImpressao } from "./templates/VisitacaoImpressao";
+import { VisitacaoImpressao } from "./templates/VisitacaoImpressao";
 
 // import { Home } from "./templates/Home";
 
