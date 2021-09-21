@@ -58,7 +58,15 @@ export const register_visitacao = async (dispatch, form_user) => {
       return dispatch({
         type: types.ERR_REGISTRATION_VISITACOES,
         payload: { 
-          feedback: "Visitacao ja cadastrado na base de dados"
+          feedback: "Visitacao ja cadastrada na base de dados"
+        }
+      })
+    }
+    if(message.includes('401')) {
+      return dispatch({
+        type: types.ERR_REGISTRATION_VISITACOES,
+        payload: { 
+          feedback: "Usuário não autenticado, realize o login novamente!"
         }
       })
     }

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { VisitadorContext } from "../../context/Visitador/context";
 import { RowVisitador }  from "../RowVisitador"
 
-export const Visitadores = ({onclick}) => {
+export const Visitadores = ({onclick }) => {
   const { visitadorState } = useContext(VisitadorContext)
   const { visitadores } = visitadorState
   return (

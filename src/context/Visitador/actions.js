@@ -59,8 +59,8 @@ export const register_visitador = async (dispatch, form_user) => {
     ).data;
     dispatch({
       type: types.SUCCESS_REGISTRATION_VISITADOR,
-      payload: {visitador:
-        response },
+      payload: {
+        visitador: response },
     });
   } catch (err) {
     console.log(err.toJSON())
@@ -69,6 +69,12 @@ export const register_visitador = async (dispatch, form_user) => {
       return dispatch({
         type: types.ERR_REGISTRATION_VISITADOR,
         payload: { feedback: "Visitador ja cadastrado na base de dados"}
+      })
+    }
+    if(message.includes('401')) {
+      return dispatch({
+        type: types.ERR_REGISTRATION_VISITADOR,
+        payload: { feedback: "Usuário não autenticado, realize o login novamente!"}
       })
     }
     if(message.includes('500')) {

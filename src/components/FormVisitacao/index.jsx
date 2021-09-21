@@ -11,7 +11,7 @@ import { Feedback } from "../Feedback"
 export const FormVisitacao = () => {
   const { visitadorState, visitadorDispatch } = useContext(VisitadorContext);
   const { visitacaoState, visitacaoDispatch } = useContext(VisitacaoContext)
-  
+
   const { visitadores } = visitadorState;
   const [visitador, setVisitador] = useState([]);
   const cr = useRef(null);
@@ -107,9 +107,9 @@ export const FormVisitacao = () => {
         data_de_nascimento
       }
       const data = new URLSearchParams(visitador)
-      await register_visitador(visitadorDispatch,data)
-      //Pegar ultimo visitador cadastrado
-      id_visitador = visitadores[visitadores.length -1].id
+      await register_visitador(visitadorDispatch, data)
+      
+      id_visitador = visitadores[visitadores.length-1].id + 1
       
     }
     id_visitador = id_visitador ? id_visitador : visitador[0].id
@@ -167,7 +167,8 @@ export const FormVisitacao = () => {
           <FormVistador />
         </FormVisitador>
       )}
-      {!(visitacaoState.feedback)&&<Feedback feedback="Visitação cadastrada com sucesso" success="true" />}
+      {visitacaoState.feedback==="success"&&<Feedback feedback="Visitação cadastrada com sucesso" success="true" />}
+      {visitacaoState.feedback==="Usuário não autenticado, realize o login novamente!"&&<Feedback feedback="Usuário não autenticado, realize o login novamente!" success="false" />}
     </Form>
     </>
   );

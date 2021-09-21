@@ -23,13 +23,14 @@ export const Home = () => {
       
       <Container>
         <Row>
-          {visitadorState.feedback && (
+          {visitadorState.feedback && visitadorState.feedback !== 'success' && (
             <Feedback feedback={visitadorState.feedback} success={false} />  
         )}
           {cadVisitacao && <FormVisitacao />}
           {visitadorState.visitadores.length > 0 && !cadVisitacao && (
             <Visitadores onclick={setCadVisitacao} />
           )}
+          {visitadorState.visitadores.length === 0&& <FormVisitacao />}  
         </Row>
       </Container>
     </>
