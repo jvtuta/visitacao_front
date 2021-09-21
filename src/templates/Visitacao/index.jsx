@@ -1,10 +1,11 @@
 import { RowVisitacao } from "../../components/RowVisitacao";
 import { Header } from "../../components/Header";
-import { Button, ButtonGroup, Container, Table } from "react-bootstrap";
+import { Button, ButtonGroup, Container, Table, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router";
 import { useContext, useEffect } from "react";
 import { VisitacaoContext } from "../../context/Visitacao/context";
 import { load_visitacao } from "../../context/Visitacao/actions";
+import { Link } from "react-router-dom";
 
 export const Visitacao = () => {
   let {id} = useParams();
@@ -18,6 +19,17 @@ export const Visitacao = () => {
     <>
       <Header login={true} />
       <Container>
+        <Row>
+          <Col>
+            <nav aria-label="breadcrumb">
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                <li className="breadcrumb-item active" aria-current="page">Visitações</li>
+              </ol>
+            </nav>
+          </Col>
+        </Row>
+        <Row>
         <Table size="sm" responsive="lg">
           <thead>
             <tr>
@@ -34,7 +46,7 @@ export const Visitacao = () => {
                 return (
                   <tr key={e.id}>
                     <RowVisitacao visitacao={e} />
-                    <td>
+                    <td className="col-md-1">
                       <ButtonGroup>
                         <Button variant="info" size="sm">Imprimir</Button>
                         <Button variant="success" size="sm">Editar</Button>
@@ -46,6 +58,7 @@ export const Visitacao = () => {
               })}
           </tbody>
         </Table>
+        </Row>
       </Container>
     </>
   );
