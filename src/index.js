@@ -14,6 +14,7 @@ import { VisitadorProvider } from "./context/Visitador";
 //Contexts
 import { AuthProvider } from "./context/Auth";
 import { Visitacao } from "./templates/Visitacao";
+import { Visitacao_Impressao } from "./templates/Visitacao_impressao";
 
 // import { Home } from "./templates/Home";
 
@@ -39,6 +40,9 @@ ReactDOM.render(
               <Switch>
               <PrivateRoute path="/visitacoes/:id" exact>
                 <Visitacao />
+              </PrivateRoute>
+              <PrivateRoute path="/visitacoes/imprimir-visitacao/:id" exact >
+                <Visitacao_Impressao  />
               </PrivateRoute>
               <PrivateRoute path="/">
                 <Home />

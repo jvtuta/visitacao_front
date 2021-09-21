@@ -108,8 +108,12 @@ export const FormVisitacao = () => {
       }
       const data = new URLSearchParams(visitador)
       await register_visitador(visitadorDispatch, data)
-      
-      id_visitador = visitadores[visitadores.length-1].id + 1
+      if(visitadores.length === 0) {
+
+        id_visitador = 1
+      } else {
+        id_visitador = visitadores[visitadores.length-1].id + 1
+      }
       
     }
     id_visitador = id_visitador ? id_visitador : visitador[0].id
