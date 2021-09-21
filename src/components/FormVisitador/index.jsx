@@ -77,7 +77,13 @@ export const FormVisitador = ({ read, place, children }) => {
         </Form.Group>
         <Form.Group as={Col} controlId="formGroupTelefone">
           <Form.Label>Observações</Form.Label>
-          <Form.Control type="text"  readOnly={read} name="observacoes"/>
+          <Form.Control 
+            type="text" 
+            readOnly={read} 
+            name="observacoes" 
+            placeholder={place ? place.observacoes : ""} 
+            defaultValue={place ? place.observacoes : ""}
+          />
         </Form.Group>
         {(children)}
           <div>

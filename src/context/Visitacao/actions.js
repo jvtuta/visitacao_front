@@ -6,7 +6,7 @@ export const load_visitacao = async (dispatch, id_visitador) => {
   dispatch({ type: types.LOADING_VISITACOES });
   const config = {
     method: "GET",
-    url: srv_api + "visitacao/"+id_visitador,
+    url: srv_api + "visitacao?filtrar_registros=id_visitador:=:"+id_visitador,
     headers: {
       Authorization: "bearer " + localStorage.getItem('token'),
       "Content-Type": "application/json",
@@ -17,39 +17,20 @@ export const load_visitacao = async (dispatch, id_visitador) => {
     const response = await (await axios(config)).data;
     dispatch({
       type: types.SUCCESS_LOADING_VISITACOES,
-      payload: { visitacoes: { ...response } },
+      payload: { visitacoes: [ ...response ] },
     });
   } catch (err) {
-    dispatch({});
+    const message = err.toJSON().message
+    if(message.includes('404')) {
+    dispatch({
+      type: types.ERR_LOADING_VISITACOES,
+      payload: { 
+        feedback: 'Não existem visitações cadastradas para este visitador'
+      }
+      });
+    }
   }
 };
-
-export const registrar_visitacao = async ( dispatch , form_data ) => {
-  dispatch({type: types.TRYING_REGISTRATION_VISITACOES})
-  const config = {
-    method: "POST",
-    url: srv_api + "visitacao",
-    headers: {
-      Authorization: "bearer " + localStorage.getItem('token'),
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    data: form_data
-  }
-  try {
-    const response = await ( await axios(config) ).data;
-    dispatch({
-      type: types.SUCCESS_REGISTRATION_VISITACOES,
-      feedback: 'Visitação cadastrada com sucesso!',
-      payload: { visitacoes: response }
-    })
-  } catch ( err ) {
-    dispatch({
-      type: types.ERR_REGISTRATION_VISITACOES
-    })
-  }
-}
-
 
 export const register_visitacao = async (dispatch, form_user) => {
   dispatch({ type: types.TRYING_REGISTRATION_VISITACOES });
@@ -76,13 +57,17 @@ export const register_visitacao = async (dispatch, form_user) => {
     if(message.includes('422')) {
       return dispatch({
         type: types.ERR_REGISTRATION_VISITACOES,
-        payload: { feedback: "Visitacao ja cadastrado na base de dados"}
+        payload: { 
+          feedback: "Visitacao ja cadastrado na base de dados"
+        }
       })
     }
     if(message.includes('500')) {
       return dispatch({
         type: types.ERR_REGISTRATION_VISITACOES,
-        payload: { feedback: "ERRO na API contate o administrador "}
+        payload: { 
+          feedback: "ERRO na API contate o administrador "
+        }
       })
     }
     if (message.includes("Network Error")) {
@@ -95,7 +80,9 @@ export const register_visitacao = async (dispatch, form_user) => {
     }
     return dispatch({
       type: types.ERR_REGISTRATION_VISITACOES,
-      payload: { feedback: "ERRO. Contate o administrador" },
+      payload: { 
+        feedback: "ERRO. Contate o administrador" 
+      },
     });
   }
 };

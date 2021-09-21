@@ -116,7 +116,7 @@ export const FormVisitacao = () => {
     const {amostras, trabalhos, comentarios, data} = obj
     
     const data_visitacao = new URLSearchParams({amostras, trabalhos, comentarios, id_visitador, data})
-    register_visitacao(visitacaoDispatch, data_visitacao)
+    return register_visitacao(visitacaoDispatch, data_visitacao)
     
     
   }

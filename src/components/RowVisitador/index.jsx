@@ -8,6 +8,7 @@ export const RowVisitador = ({ visitador }) => {
       <td>{visitador.secretarias}</td>
       <td>{visitador.data_de_nascimento}</td>
       <td>{visitador.telefone}</td>
+      <td>{visitador.observacoes}</td>
       <td>{visitador.locais_de_atendimento}</td>
     </>
   );
