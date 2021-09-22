@@ -4,6 +4,9 @@
   box-sizing: border-box;
 }
 
+#root > div.p-0.mb-3.container-fluid > nav > div > span > a > span > img {
+  height: 60px;
+}
 
 
 body {

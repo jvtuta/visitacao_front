@@ -2,16 +2,22 @@ import { RowVisitacao } from "../../components/RowVisitacao";
 import { Header } from "../../components/Header";
 import { Button, ButtonGroup, Container, Table, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { VisitacaoContext } from "../../context/Visitacao/context";
 import { load_visitacao } from "../../context/Visitacao/actions";
 import { Link } from "react-router-dom";
+import {useReactToPrint}  from "react-to-print";
+import { VisitacaoImpressao } from "../../components/VisitacaoImpressao";
+
 
 export const Visitacao = () => {
   let {id} = useParams();
   const { visitacaoState, visitacaoDispatch } = useContext(VisitacaoContext);
   const { visitacoes } = visitacaoState
-    console.log(visitacaoState)
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current
+  })
   useEffect(() => {  
     load_visitacao(visitacaoDispatch, id);
   }, [visitacaoDispatch, id]);
@@ -49,7 +55,8 @@ export const Visitacao = () => {
                     <td className="col-md-1">
                       <ButtonGroup>
                           {/* eslint-disable-next-line */}
-                        <a className="btn btn-sm btn-info" target="_blank" href={"imprimir-visitacao/"+e.id}>Imprimir</a>
+                        
+                        <Button variant="info" onClick={handlePrint}>Imprimir</Button>
                         <Button variant="success" size="sm">Editar</Button>
                         <Button variant="danger" size="sm">Excluir</Button>
                       </ButtonGroup>
@@ -60,6 +67,9 @@ export const Visitacao = () => {
           </tbody>
         </Table>
         </Row>
+        <div style={{ display: "none" }}>
+            <VisitacaoImpressao ref={componentRef}/>
+        </div>
       </Container>
     </>
   );
