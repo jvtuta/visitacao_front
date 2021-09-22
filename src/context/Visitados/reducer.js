@@ -8,7 +8,7 @@ export const reducer = (state, action) => {
 
       return {
         ...state,
-        visitadores: action.payload.visitadores,
+        visitados: action.payload.visitados,
         loading: false,
         feedback: ''
       };
@@ -19,8 +19,7 @@ export const reducer = (state, action) => {
       
       return {
         ...state,
-        visitadores: [...state.visitadores, action.payload.visitador],
-        visitador: action.payload.visitador,
+        visitados: [...state.visitados, ...action.payload.visitador],
         loading: false,
         feedback: ''
       };

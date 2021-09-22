@@ -1,6 +1,6 @@
 import * as types from "./types";
 import axios from "axios";
-import { srv_api } from "../Auth/data_auth";
+import { srv_api, data_auth } from "../Auth/data_auth";
 
 export const load_visitacao = async (dispatch, id_visitador) => {
   dispatch({ type: types.LOADING_VISITACOES });
@@ -47,9 +47,10 @@ export const register_visitacao = async (dispatch, form_user) => {
         data: form_user,
       })
     ).data;
+    console.log('visitacoes: response'+[...response])
     dispatch({
       type: types.SUCCESS_REGISTRATION_VISITACOES,
-      payload: { visitacoes:{...response} },
+      payload: { visitacoes: [ ...response ] },
     });
   } catch (err) {
     console.log(err.toJSON())
@@ -63,6 +64,9 @@ export const register_visitacao = async (dispatch, form_user) => {
       })
     }
     if(message.includes('401')) {
+      localStorage.setItem('token', '')
+      data_auth.jwt_token = '';
+
       return dispatch({
         type: types.ERR_REGISTRATION_VISITACOES,
         payload: { 

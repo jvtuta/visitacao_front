@@ -5,7 +5,7 @@ import { data_auth } from "../Auth/data_auth";
 
 
 
-export const load_visitador = async (dispatch) => {
+export const load_visitado = async (dispatch) => {
   dispatch({ type: types.LOADING_VISITADOR });
   const config = {
     method: "GET",
@@ -20,7 +20,7 @@ export const load_visitador = async (dispatch) => {
     const response = await(await axios(config)).data;
     dispatch({
       type: types.SUCCESS_LOADING_VISITADOR,
-      payload: { visitadores: [...response] },
+      payload: { visitados: [...response] },
     });
   } catch (err) {
     const message = err.toJSON().message
@@ -42,7 +42,7 @@ export const load_visitador = async (dispatch) => {
 
 
 
-export const register_visitador = async (dispatch, form_user) => {
+export const register_visitado = async (dispatch, form_user) => {
   dispatch({ type: types.TRYING_REGISTRATION_VISITADOR });
   try {
     const response = await (
@@ -57,10 +57,12 @@ export const register_visitador = async (dispatch, form_user) => {
         data: form_user,
       })
     ).data;
+    console.log('visitador response ='+response)
     dispatch({
       type: types.SUCCESS_REGISTRATION_VISITADOR,
       payload: {
-        visitador: response },
+        visitados: response 
+      },
     });
   } catch (err) {
     console.log(err.toJSON())
@@ -68,19 +70,25 @@ export const register_visitador = async (dispatch, form_user) => {
     if(message.includes('422')) {
       return dispatch({
         type: types.ERR_REGISTRATION_VISITADOR,
-        payload: { feedback: "Visitador ja cadastrado na base de dados"}
+        payload: { 
+          feedback: "Visitador ja cadastrado na base de dados"
+        }
       })
     }
     if(message.includes('401')) {
       return dispatch({
         type: types.ERR_REGISTRATION_VISITADOR,
-        payload: { feedback: "Usuário não autenticado, realize o login novamente!"}
+        payload: { 
+          feedback: "Usuário não autenticado, realize o login novamente!"
+        }
       })
     }
     if(message.includes('500')) {
       return dispatch({
         type: types.ERR_REGISTRATION_VISITADOR,
-        payload: { feedback: "ERRO na API contate o administrador "}
+        payload: { 
+          feedback: "ERRO na API contate o administrador "
+        }
       })
     }
     if (message.includes("Network Error")) {
@@ -93,7 +101,9 @@ export const register_visitador = async (dispatch, form_user) => {
     }
     return dispatch({
       type: types.ERR_REGISTRATION_VISITADOR,
-      payload: { feedback: "ERRO. Contate o administrador" },
+      payload: { 
+        feedback: "ERRO. Contate o administrador" 
+      },
     });
   }
 };

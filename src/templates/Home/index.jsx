@@ -1,36 +1,38 @@
 import "./style.css";
 import { Header } from "../../components/Header";
-import { Container, Row } from "react-bootstrap";
-import { Visitadores } from "../../components/Visitadores";
-import { useContext, useEffect, useState } from "react";
-import { VisitadorContext } from "../../context/Visitador/context";
-import { load_visitador } from "../../context/Visitador/actions";
+import { Container, Row, Col } from "react-bootstrap";
+import { Visitados } from "../../components/Visitados";
+import { useContext, useEffect } from "react";
+import { VisitadoContext } from "../../context/Visitados/context";
+import { load_visitado } from "../../context/Visitados/actions";
 import { Loading } from "../../components/Loading";
 import { Feedback } from "../../components/Feedback";
 import { FormVisitacao } from "../../components/FormVisitacao";
 
 export const Home = () => {
-  const { visitadorState, visitadorDispatch } = useContext(VisitadorContext);
-  const [ cadVisitacao, setCadVisitacao] = useState(false);
+  const { visitadosState, visitadosDispatch } = useContext(VisitadoContext);
+
   useEffect(() => {
-    load_visitador(visitadorDispatch);
-  }, [visitadorDispatch]);
+    load_visitado(visitadosDispatch);
+  }, [visitadosDispatch]);
 
   return (
     <>
       <Header login="true" />
-      {visitadorState.loading && <Loading /> }
-      
+      {visitadosState.loading && <Loading /> }
+      {/* Home irá renderizar os visitadores cadastrados */}
       <Container>
         <Row>
-          {visitadorState.feedback && visitadorState.feedback !== 'success' && (
-            <Feedback feedback={visitadorState.feedback} success={false} />  
-        )}
-          {cadVisitacao && <FormVisitacao />}
-          {visitadorState.visitadores.length > 0 && !cadVisitacao && (
-            <Visitadores onclick={setCadVisitacao} />
-          )}
-          {visitadorState.visitadores.length === 0&& <FormVisitacao />}  
+          <Col>
+            <nav aria-label="breadcrumb">
+              <ol className="breadcrumb">
+                <li className="breadcrumb-item" active>Home</li>
+              </ol>
+            </nav>
+          </Col>
+        </Row>
+        <Row>
+
         </Row>
       </Container>
     </>

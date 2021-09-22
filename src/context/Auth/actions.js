@@ -63,7 +63,7 @@ export const Register_user = async (dispatch, form_user) => {
     ).data;
     dispatch({
       type: types.SUCCESS_REGISTRATION,
-      payload: { ...response },
+      payload: { ...response }, //errado
     });
   } catch (err) {
     console.log(err.toJSON())
@@ -71,13 +71,17 @@ export const Register_user = async (dispatch, form_user) => {
     if(message.includes('422')) {
       return dispatch({
         type: types.ERR_REGISTRATION,
-        payload: { feedback: "Usuário ja cadastrado na base de dados"}
+        payload: { 
+          feedback: "Usuário ja cadastrado na base de dados"
+        }
       })
     }
     if(message.includes('500')) {
       return dispatch({
         type: types.ERR_REGISTRATION,
-        payload: { feedback: "ERRO na API contate o administrador "}
+        payload: { 
+          feedback: "ERRO na API contate o administrador "
+        }
       })
     }
     if (message.includes("Network Error")) {
@@ -90,7 +94,9 @@ export const Register_user = async (dispatch, form_user) => {
     }
     return dispatch({
       type: types.ERR_REGISTRATION,
-      payload: { feedback: "ERRO. Contate o administrador" },
+      payload: { 
+        feedback: "ERRO. Contate o administrador" 
+      },
     });
   }
 };

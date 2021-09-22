@@ -11,7 +11,7 @@ import { Registro } from "./templates/Registro";
 import { Home } from "./templates/Home";
 
 import { VisitacaoProvider } from "./context/Visitacao";
-import { VisitadorProvider } from "./context/Visitador";
+import { VisitadorProvider } from "./context/Visitados";
 //Contexts
 import { AuthProvider } from "./context/Auth";
 import { Visitacao } from "./templates/Visitacao";
