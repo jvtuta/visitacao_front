@@ -1,16 +1,17 @@
 import { useContext } from "react";
 import { Table, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { VisitadorContext } from "../../context/Visitador/context";
-import { RowVisitador }  from "../RowVisitador"
+import { VisitadoContext } from "../../context/Visitados/context";
+import { RowVisitado }  from "../RowVisitado"
 
-export const Visitadores = ({onclick }) => {
-  const { visitadorState } = useContext(VisitadorContext)
-  const { visitadores } = visitadorState
+export const Visitados = ({onclick }) => {
+  const { visitadosState } = useContext(VisitadoContext)
+  const { visitados } = visitadosState
   return (
     <>
       <div className="">
-        <h4 className="d-inline border-bottom py-2">Visitadores</h4>
+        <h4 className="d-inline border-bottom py-2">Visitados</h4>
+        {/* Trocar butão por link */}
         <Button onClick={()=>onclick(true)} variant="success" className="float-end" size="sm">Cadastrar visitação</Button>
         
       </div>
@@ -30,10 +31,10 @@ export const Visitadores = ({onclick }) => {
           </tr>
         </thead>  
         <tbody>
-          {visitadores.length > 0 &&visitadores.map((e)=>{ 
+          {visitados.length > 0 &&visitados.map((e)=>{ 
             return(
               <tr key={e.id}>
-                <RowVisitador visitador={e} />
+                <RowVisitado visitador={e} />
                 <td>
                   <Link to={"/visitacoes/"+e.id} className="btn btn-sm btn-info">Visitações</Link>
                 </td>

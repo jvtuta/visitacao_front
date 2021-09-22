@@ -11,7 +11,7 @@ export const Visitacao = () => {
   let {id} = useParams();
   const { visitacaoState, visitacaoDispatch } = useContext(VisitacaoContext);
   const { visitacoes } = visitacaoState
-    console.log(visitacaoState)
+
   useEffect(() => {  
     load_visitacao(visitacaoDispatch, id);
   }, [visitacaoDispatch, id]);

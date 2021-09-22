@@ -10,11 +10,10 @@ import { Registro } from "./templates/Registro";
 import { Home } from "./templates/Home";
 
 import { VisitacaoProvider } from "./context/Visitacao";
-import { VisitadorProvider } from "./context/Visitador";
+import { VisitadorProvider } from "./context/Visitados";
 //Contexts
 import { AuthProvider } from "./context/Auth";
 import { Visitacao } from "./templates/Visitacao";
-import { VisitacaoImpressao } from "./templates/VisitacaoImpressao";
 
 // import { Home } from "./templates/Home";
 
@@ -40,9 +39,6 @@ ReactDOM.render(
               <Switch>
               <PrivateRoute path="/visitacoes/:id" exact>
                 <Visitacao />
-              </PrivateRoute>
-              <PrivateRoute path="/visitacoes/imprimir-visitacao/:id" exact >
-                <VisitacaoImpressao  />
               </PrivateRoute>
               <PrivateRoute path="/">
                 <Home />
