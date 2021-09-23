@@ -38,7 +38,7 @@ export const Visitacao = () => {
           </Col>
         </Row>
         <Row>
-        <Table size="sm" responsive="lg">
+        <Table size="sm" responsive="lg" striped bordered hover>
           <thead>
             <tr>
               <th>Data da visita</th>

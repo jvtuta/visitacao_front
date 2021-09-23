@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button, ButtonGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { VisitadoContext } from "../../context/Visitados/context";
 import { RowVisitado }  from "../RowVisitado"
@@ -15,18 +15,13 @@ export const Visitados = () => {
         <Link to="/visitado-cadastro" className="float-end btn btn-sm btn-outline-info">Cadastrar visitação</Link>
         
       </div>
-      <Table size="sm" responsive="lg" >
+      <Table size="sm" responsive striped bordered hover >
         <thead>
           <tr>
-            <th>Visitado</th> 
+            <th>Nome</th> 
             <th>Conselho regional</th> 
-            <th>Especialidade</th>
-            <th>Email</th>
             <th>Secretárias</th>
-            <th>Data de nascimento</th>
             <th>Telefone</th>
-            <th>Observações</th>
-            <th>Locais de atendimento</th>
             <th>#</th>
           </tr>
         </thead>  
@@ -36,7 +31,11 @@ export const Visitados = () => {
               <tr key={e.id}>
                 <RowVisitado visitado={e} />
                 <td>
-                  <Link to={"/visitacoes/"+e.id} className="btn btn-sm btn-info">Visitações</Link>
+                  <ButtonGroup>
+                    <Link to={"/visitacoes/"+e.id} className="btn btn-sm btn-info">Visitações</Link>
+                    <Button variant="warning" size="sm">Editar</Button>
+                    <Button variant="success" className="btn btn-sm btn-success" >Cadastrar visitacao</Button>
+                  </ButtonGroup>
                 </td>
               </tr>
              )

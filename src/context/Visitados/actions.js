@@ -55,7 +55,7 @@ export const register_visitado = async (dispatch, form_user) => {
     const response = await (
       await axios({
         method: "post",
-        url: srv_api + "visitador",
+        url: srv_api + "visitado",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
           Accept: "application/json",
@@ -64,11 +64,11 @@ export const register_visitado = async (dispatch, form_user) => {
         data: form_user,
       })
     ).data;
-    console.log('visitador response ='+response)
+
     dispatch({
       type: types.SUCCESS_REGISTRATION_VISITADOR,
       payload: {
-        visitados: response 
+        visitado: response.visitado
       },
     });
   } catch (err) {
@@ -78,7 +78,7 @@ export const register_visitado = async (dispatch, form_user) => {
       return dispatch({
         type: types.ERR_REGISTRATION_VISITADOR,
         payload: { 
-          feedback: "Visitador ja cadastrado na base de dados"
+          feedback: "Visitado ja cadastrado na base de dados"
         }
       })
     }

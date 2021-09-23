@@ -16,10 +16,10 @@ export const reducer = (state, action) => {
 
       return { ...state, feedback: action.payload.feedback, loading: false };
     case types.SUCCESS_REGISTRATION_VISITADOR:
-      
+
       return {
         ...state,
-        visitados: [...state.visitados, ...action.payload.visitador],
+        visitados: [...state.visitados, action.payload.visitado],
         loading: false,
         feedback: ''
       };

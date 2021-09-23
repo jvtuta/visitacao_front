@@ -2,11 +2,15 @@ import * as types from "./types";
 import axios from "axios";
 import { srv_api, data_auth } from "../Auth/data_auth";
 
-export const load_visitacao = async (dispatch, id_visitador) => {
+export const load_visitacao = async (dispatch, id_visitado) => {
+  let filtro = "filtrar_registros=id_visitado:=:"+id_visitado
+  if(id_visitado === "all") {
+    filtro = ''
+  }
   dispatch({ type: types.LOADING_VISITACOES });
   const config = {
     method: "GET",
-    url: srv_api + "visitacao?filtrar_registros=id_visitador:=:"+id_visitador,
+    url: srv_api + "visitacao?"+filtro,
     headers: {
       Authorization: "bearer " + localStorage.getItem('token'),
       "Content-Type": "application/json",

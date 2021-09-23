@@ -1,13 +1,13 @@
 import "./style.css";
 import { Header } from "../../components/Header";
-import { Container, Row, Col, Table } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { Visitados } from "../../components/Visitados";
 import { useContext, useEffect } from "react";
 import { VisitadoContext } from "../../context/Visitados/context";
 import { load_visitado } from "../../context/Visitados/actions";
 import { Loading } from "../../components/Loading";
 import { Feedback } from "../../components/Feedback";
-import { FormVisitacao } from "../../components/FormVisitacao";
+// import { FormVisitacao } from "../../components/FormVisitacao";
 
 export const Home = () => {
   const { visitadosState, visitadosDispatch } = useContext(VisitadoContext);
