@@ -9,7 +9,7 @@ export const load_visitado = async (dispatch) => {
   dispatch({ type: types.LOADING_VISITADOR });
   const config = {
     method: "GET",
-    url: srv_api + "visitador",
+    url: srv_api + "visitado",
     headers: {
       Authorization: "bearer " + localStorage.getItem('token'),
       "Content-Type": "application/json",
@@ -24,7 +24,14 @@ export const load_visitado = async (dispatch) => {
     });
   } catch (err) {
     const message = err.toJSON().message
-    
+    if(message.includes('500')) {
+      return dispatch({
+        type: types.ERR_LOADING_VISITADOR,
+        payload: {
+          feedback: { message: 'Erro interno na API', result: false}
+        }
+      })
+    }
     if(message.includes('401')) {
 
       localStorage.setItem('token', '')

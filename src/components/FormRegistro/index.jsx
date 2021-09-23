@@ -42,6 +42,7 @@ export const FormRegistro = () => {
               ref={email}
               type="email"
               placeholder="Digite seu email"
+              required
             ></Form.Control>
           </Form.Group>
           <Form.Group controlId="formGroupName">
@@ -50,6 +51,7 @@ export const FormRegistro = () => {
               ref={name}
               type="text"
               placeholder="Digite seu nome"
+              
             ></Form.Control>
           </Form.Group>
           <Form.Group controlId="formGroupPassword">
@@ -58,6 +60,7 @@ export const FormRegistro = () => {
               ref={password}
               type="password"
               placeholder="Digite a senha"
+              required
             ></Form.Control>
           </Form.Group>
 
@@ -67,6 +70,7 @@ export const FormRegistro = () => {
               ref={password_confirmation}
               type="password"
               placeholder="Confirme sua senha"
+              required
             ></Form.Control>
           </Form.Group>
           <Button

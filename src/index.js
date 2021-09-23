@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { PrivateRoute } from "./Routes/PrivateRoute";
 
 import "./styles/Global/bootstrap/style-min.css";
-import "./styles/Global/style.css"
+import "./styles/Global/style.css";
 import { Login } from "./templates/Login";
 import { Registro } from "./templates/Registro";
 import { Home } from "./templates/Home";
@@ -15,6 +15,7 @@ import { VisitadorProvider } from "./context/Visitados";
 //Contexts
 import { AuthProvider } from "./context/Auth";
 import { Visitacao } from "./templates/Visitacao";
+import { Visitado } from "./templates/Visitado";
 
 // import { Home } from "./templates/Home";
 
@@ -33,17 +34,20 @@ ReactDOM.render(
 
           {/* VisitadorProvider */}
           {/* VisitacoesProvider */}
-          
+
           {/* Ultima rota */}
           <VisitadorProvider>
-            <VisitacaoProvider> 
+            <VisitacaoProvider>
               <Switch>
-              <PrivateRoute path="/visitacoes/:id" exact>
-                <Visitacao />
-              </PrivateRoute>
-              <PrivateRoute path="/">
-                <Home />
-              </PrivateRoute>
+                <PrivateRoute path="/visitacoes/:id" exact>
+                  <Visitacao />
+                </PrivateRoute>
+                <PrivateRoute path="/visitado-cadastro" exact>
+                  <Visitado />
+                </PrivateRoute>
+                <PrivateRoute path="/">
+                  <Home />
+                </PrivateRoute>
               </Switch>
             </VisitacaoProvider>
           </VisitadorProvider>

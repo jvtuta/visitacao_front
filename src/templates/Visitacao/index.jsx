@@ -6,7 +6,7 @@ import { useContext, useEffect, useRef } from "react";
 import { VisitacaoContext } from "../../context/Visitacao/context";
 import { load_visitacao } from "../../context/Visitacao/actions";
 import { Link } from "react-router-dom";
-import {useReactToPrint}  from "react-to-print";
+import { useReactToPrint }  from "react-to-print";
 import { VisitacaoImpressao } from "../../components/VisitacaoImpressao";
 
 
@@ -14,14 +14,12 @@ export const Visitacao = () => {
   let {id} = useParams();
   const { visitacaoState, visitacaoDispatch } = useContext(VisitacaoContext);
   const { visitacoes } = visitacaoState
-<<<<<<< HEAD
   const componentRef = useRef();
+
   const handlePrint = useReactToPrint({
     content: () => componentRef.current
   })
-=======
 
->>>>>>> f0c34d90c351895d704005a8b7e92462bf8fce9e
   useEffect(() => {  
     load_visitacao(visitacaoDispatch, id);
   }, [visitacaoDispatch, id]);

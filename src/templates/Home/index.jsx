@@ -1,6 +1,6 @@
 import "./style.css";
 import { Header } from "../../components/Header";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Table } from "react-bootstrap";
 import { Visitados } from "../../components/Visitados";
 import { useContext, useEffect } from "react";
 import { VisitadoContext } from "../../context/Visitados/context";
@@ -20,19 +20,23 @@ export const Home = () => {
     <>
       <Header login="true" />
       {visitadosState.loading && <Loading /> }
+      
       {/* Home irá renderizar os visitadores cadastrados */}
       <Container>
+      {visitadosState.feedback&&<Feedback feedback={visitadosState.feedback.message} success={visitadosState.feedback.result} />}
         <Row>
           <Col>
             <nav aria-label="breadcrumb">
               <ol className="breadcrumb">
-                <li className="breadcrumb-item" active>Home</li>
+                <li className="breadcrumb-item" active="true">Home</li>
               </ol>
             </nav>
           </Col>
         </Row>
         <Row>
-
+          <Col>
+            <Visitados />
+          </Col>
         </Row>
       </Container>
     </>

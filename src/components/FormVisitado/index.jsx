@@ -1,9 +1,39 @@
-import { Form, Button, Col, Row } from "react-bootstrap";
+import { useRef } from "react";
+import { Form, Button, Col, Row, InputGroup } from "react-bootstrap";
 
-export const FormVisitador = ({ read, place, children }) => {
+export const FormVisitado = ({ place, children, onClickCallback }) => {
+  const read = place ? true : false
+  const tipo = useRef(null)
+  const form = useRef(null)
+  const conselhoRegional = useRef(null)
+  console.log(onClickCallback)
+  if(place) {
+    const visitado = place.visitados.filter((e)=>{
+      return e[tipo.current.value].conselho_regional === conselhoRegional.current.value
+    })
+
+    place = {...visitado}
+  }
+
   return (
     <>
+    <h4 className="mt-1">Visitado: </h4>
+    <Form ref={form}>
+      
+      <Row className="mb-2">
+        <Col xs md={4}>
+          <InputGroup>
+            <InputGroup.Text>Conselho regional</InputGroup.Text>
+            <Form.Control as="select" name="tipo" ref={tipo}>
+              <option value="crm">CRM</option>
+              <option value="crn">CRN</option>
+            </Form.Control>
+            <Form.Control type="number" name="conselhoRegional" ref={conselhoRegional} />
+          </InputGroup>
+        </Col>
+      </Row>
       <Row>
+
         <Form.Group as={Col} sm={2} xs={12} md={3} lg={3} controlId="formGroupNome">
           <Form.Label>Nome</Form.Label>
           <Form.Control
@@ -91,7 +121,10 @@ export const FormVisitador = ({ read, place, children }) => {
             
             className="mt-3 me-3 col-md-4"
             variant="info"
-
+            onClick={(e)=> {
+              e.preventDefault()
+              return  onClickCallback(form)
+            }}
             type="submit"
           >
             {" "}
@@ -99,6 +132,7 @@ export const FormVisitador = ({ read, place, children }) => {
           </Button>
           </div>
       </Row>
+      </Form>
     </>
   );
 };

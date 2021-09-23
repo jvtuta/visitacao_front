@@ -1,15 +1,15 @@
-export const RowVisitado = ({ visitador }) => {
+export const RowVisitado = ({ visitado }) => {
   return (
     <>
-      <td>{visitador.nome}</td>
-      <td>{visitador.crm !== null ? visitador.crm : visitador.crn}</td>
-      <td>{visitador.especialidade}</td>
-      <td>{visitador.email}</td>
-      <td>{visitador.secretarias}</td>
-      <td>{visitador.data_de_nascimento}</td>
-      <td>{visitador.telefone}</td>
-      <td>{visitador.observacoes}</td>
-      <td>{visitador.locais_de_atendimento}</td>
+      <td>{visitado.nome}</td>
+      <td>{visitado.crm !== null ? visitado.crm : visitado.crn}</td>
+      <td>{visitado.especialidade}</td>
+      <td>{visitado.email}</td>
+      <td>{visitado.secretarias}</td>
+      <td>{visitado.data_de_nascimento}</td>
+      <td>{visitado.telefone}</td>
+      <td>{visitado.observacoes}</td>
+      <td>{visitado.locais_de_atendimento}</td>
     </>
   );
 };

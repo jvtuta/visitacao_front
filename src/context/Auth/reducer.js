@@ -10,7 +10,8 @@ export const reducer = (state, action) => {
               user: action.payload.user, 
               jwt_token: action.payload.jwt_token,
               loading: false,
-              csrf_token: action.payload.csrf_token
+              csrf_token: action.payload.csrf_token,
+              feedback: ''
             }
           } else {
             return {
@@ -23,12 +24,12 @@ export const reducer = (state, action) => {
           }
     case types.TRYING_AUTHENCATION:
       //tela de carregamento
-      return { ...state, loading: true }
+      return { ...state, loading: true, feedback: '' }
     case types.ERR_LOGON:
       //Caso der erro
       return {...state, feedback: action.payload.feedback, loading: false};
     case types.TRYING_REGISTRATION:
-      return { ...state, loading: true }
+      return { ...state, loading: true, feedback: '' }
     case types.SUCCESS_REGISTRATION:
       return { ...state, loading: false, feedback: true }
     case types.ERR_REGISTRATION: 
