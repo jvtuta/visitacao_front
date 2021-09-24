@@ -4,6 +4,7 @@ import "./style.css"
 
 export class VisitacaoImpressao extends PureComponent {
   render() {
+      //eslint-disable-next-line
     const visitacoes = { ...this.props.visitacoes };
     return (
         <div className="container">
