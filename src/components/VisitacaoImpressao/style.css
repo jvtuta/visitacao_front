@@ -1,0 +1,7 @@
+.borda {
+    border: solid 1px gray;
+}
+
+.borda-texto {
+    border-bottom: solid 1px black;
+}

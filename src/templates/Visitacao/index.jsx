@@ -51,7 +51,7 @@ export const Visitacao = () => {
         </Row>
           <div className="mb-3">
             <h4 className="d-inline border-bottom py-2">{visitado.nome}</h4>
-            <Link to="/visitado-cadastro" className="float-end btn btn-sm btn-outline-info">Imprimir Visitações</Link>
+            <Button className="float-end" size="sm" variant="outline-info" onClick={handlePrint}>Imprimir Visitações</Button>
           </div>
         <Row>
         <Table size="sm" responsive="lg" striped bordered hover>
@@ -73,8 +73,6 @@ export const Visitacao = () => {
                     <td className="col-md-1">
                       <ButtonGroup>
                           {/* eslint-disable-next-line */}
-                        
-                        <Button variant="info" onClick={handlePrint}>Imprimir</Button>
                         <Button variant="success" size="sm">Editar</Button>
                         <Button variant="danger" size="sm">Excluir</Button>
                       </ButtonGroup>
@@ -86,7 +84,7 @@ export const Visitacao = () => {
         </Table>
         </Row>
         <div style={{ display: "none" }}>
-            <VisitacaoImpressao ref={componentRef}/>
+            <VisitacaoImpressao visitacoes={visitacoes} ref={componentRef}/>
         </div>
       </Container>
     </>

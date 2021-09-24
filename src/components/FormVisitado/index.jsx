@@ -8,7 +8,7 @@ export const FormVisitado = ({ id_visitado, children, onClickCallback }) => {
   const read = id_visitado || visitado ? true : false;
   const tipo = useRef(null);
   const form = useRef(null);
-
+  
   useEffect(()=>{
     if(id_visitado) {
       setVisitado(()=>{
@@ -31,7 +31,12 @@ export const FormVisitado = ({ id_visitado, children, onClickCallback }) => {
             //eslint-disable-next-line
             return visitado[tipo.current.value] == e.target.value
           })
-          return {...res[0]}
+          
+          if(res.length>0) {
+            return {...res[0]}
+          } else {
+            return null
+          }
       })
       }
       if(visitado&&e.target.value.length <= 4) {
