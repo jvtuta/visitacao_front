@@ -1,20 +1,23 @@
+//Componentes
 import { FormVisitado } from "../../components/FormVisitado";
 import { FormVisitacao } from "../../components/FormVisitacao";
+//Contextos
 import { VisitadoContext } from "../../context/Visitados/context";
 import { VisitacaoContext } from "../../context/Visitacao/context";
+//React e react-router
 import { useContext } from "react";
 import { Header } from "../../components/Header";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { register_visitado } from "../../context/Visitados/actions";
-import { AuthContext } from "../../context/Auth/context";
 import { useParams } from "react-router";
+//Ações
+import { register_visitado } from "../../context/Visitados/actions";
+import { register_visitacao } from "../../context/Visitacao/actions";
 
 export const Visitado = () => {
-  const { visitadosState, visitadosDispatch } = useContext(VisitadoContext);
-  const { visitacaoState, visitacaoDispatch } = useContext(VisitacaoContext);
+  const { visitadosDispatch } = useContext(VisitadoContext);
+  const { visitacaoDispatch } = useContext(VisitacaoContext);
   const { id } = useParams();
-  const { authState } = useContext(AuthContext);
 
   const handleBsubmit = async (e) => {
     let obj;
@@ -25,7 +28,7 @@ export const Visitado = () => {
         [e.current[i].name]: e.current[i].value,
       };
     }
-
+    
     const {
       tipo,
       conselhoRegional,
@@ -37,6 +40,10 @@ export const Visitado = () => {
       secretarias,
       locais_de_atendimento,
       observacoes,
+      data,
+      comentarios,
+      amostras,
+      trabalhos
     } = obj;
 
     const visitadoForm = new URLSearchParams({
@@ -57,31 +64,55 @@ export const Visitado = () => {
     switch (tipo) {
       case "crm":
         {
-          const visitado = visitados.filter((e) => {
+          let visitado = visitados.filter((e) => {
             //eslint-disable-next-line
             return e["crm"] == conselhoRegional;
           });
 
+          visitado = visitado[0]
+          const visitacaoForm = new URLSearchParams({
+            data,
+            comentarios,
+            amostras,
+            trabalhos,
+            id_visitado: id ? id : visitado.id ? visitado.id : JSON.parse(localStorage.getItem('visitado_id'))
+          })
           if (visitado) {
             //Registrar visitacao
-
+            await register_visitacao(visitacaoDispatch, visitacaoForm)
           } else {
             await register_visitado(visitadosDispatch, visitadoForm);
+            //Registrar visitacao após o registro de visitado
+            await register_visitacao(visitacaoDispatch, visitacaoForm)
+
           }
         }
         break;
       case "crn":
         {
-          const visitado = visitados.filter((e) => {
+          let visitado = visitados.filter((e) => {
             //eslint-disable-next-line
             return e["crm"] == conselhoRegional;
           });
 
+          visitado = visitado[0]
+          const visitacaoForm = new URLSearchParams({
+            data,
+            comentarios,
+            amostras,
+            trabalhos,
+            id_visitado: id ? id : visitado.id ? visitado.id : JSON.parse(localStorage.getItem('visitado_id'))
+          })
+
           if (visitado) {
             //Registrar visitacao
-
+            await register_visitacao(visitacaoDispatch, visitacaoForm)
           } else {
             await register_visitado(visitadosDispatch, visitadoForm);
+            //Registrar visitacao após o registro de visitado
+            await register_visitacao(visitacaoDispatch, visitacaoForm)
+
+
           }
         }
         break;
@@ -109,8 +140,8 @@ export const Visitado = () => {
         </Row>
         <Row>
           {id&&
-            <FormVisitado id_visitado={id} onClickCallback={handleBsubmit}>
-              <FormVisitacao />
+          <FormVisitado id_visitado={id} onClickCallback={handleBsubmit}>
+            <FormVisitacao />
           </FormVisitado>}
 
           {!id&&

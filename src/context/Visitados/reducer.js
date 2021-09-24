@@ -16,7 +16,7 @@ export const reducer = (state, action) => {
 
       return { ...state, feedback: action.payload.feedback, loading: false };
     case types.SUCCESS_REGISTRATION_VISITADOR:
-
+      localStorage.setItem('visitado_id',JSON.stringify(action.payload.visitado.id));
       return {
         ...state,
         visitados: [...state.visitados, action.payload.visitado],

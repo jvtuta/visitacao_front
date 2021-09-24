@@ -7,7 +7,6 @@ import logo from '../../img/logo-site-1.png'
 export const Header = ({login = false}) => {
   const { authState } = useContext(AuthContext);
   // const logo = require()
-  console.log(logo)
   function logout() {
     authState.jwt_token = ''
     localStorage.setItem('token', '');
@@ -33,7 +32,8 @@ export const Header = ({login = false}) => {
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ms-auto">
                   <NavDropdown title="Opções" id="basic-nav-dropdown">                    
-                      <Link to="/" className="dropdown-item">Cadastro de visitações</Link>
+                      <Link to="/visitado-cadastro" className="dropdown-item">Cadastro de visitações</Link>
+                      <Link to="/" className="dropdown-item">Visitações</Link>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={logout}>
                       Logout

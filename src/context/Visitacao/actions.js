@@ -51,12 +51,13 @@ export const register_visitacao = async (dispatch, form_user) => {
         data: form_user,
       })
     ).data;
-    console.log('visitacoes: response'+[...response])
+    
     dispatch({
       type: types.SUCCESS_REGISTRATION_VISITACOES,
-      payload: { visitacoes: [ ...response ] },
+      payload: { visitacoes: response },
     });
   } catch (err) {
+    console.log(err)
     console.log(err.toJSON())
     const message = err.toJSON().message
     if(message.includes('422')) {

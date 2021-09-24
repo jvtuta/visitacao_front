@@ -4,25 +4,32 @@ import { Button, ButtonGroup, Container, Table, Row, Col } from "react-bootstrap
 import { useParams } from "react-router";
 import { useContext, useEffect, useRef } from "react";
 import { VisitacaoContext } from "../../context/Visitacao/context";
+import { VisitadoContext } from "../../context/Visitados/context";
 import { load_visitacao } from "../../context/Visitacao/actions";
 import { Link } from "react-router-dom";
 import { useReactToPrint }  from "react-to-print";
 import { VisitacaoImpressao } from "../../components/VisitacaoImpressao";
+import { load_visitado } from "../../context/Visitados/actions";
 
 
 export const Visitacao = () => {
-  let {id} = useParams();
+  const { id } = useParams();
   const { visitacaoState, visitacaoDispatch } = useContext(VisitacaoContext);
-  const { visitacoes } = visitacaoState
-  const componentRef = useRef();
+  const { visitadosState, visitadosDispatch } = useContext(VisitadoContext);
+  const { visitados } = visitadosState;
+  const { visitacoes } = visitacaoState;
+  const visitado = visitados.filter((e)=>e.id == id)[0]
 
+  const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current
   })
 
   useEffect(() => {  
+
     load_visitacao(visitacaoDispatch, id);
-  }, [visitacaoDispatch, id]);
+    load_visitado(visitadosDispatch)
+  }, [visitacaoDispatch, id, visitadosDispatch]);
   return (
     <>
       <Header login={true} />
@@ -36,7 +43,15 @@ export const Visitacao = () => {
               </ol>
             </nav>
           </Col>
+          <Col>
+            
+
+          </Col>
         </Row>
+          <div className="mb-3">
+            <h4 className="d-inline border-bottom py-2">{visitado.nome}</h4>
+            <Link to="/visitado-cadastro" className="float-end btn btn-sm btn-outline-info">Imprimir Visitações</Link>
+          </div>
         <Row>
         <Table size="sm" responsive="lg" striped bordered hover>
           <thead>
