@@ -18,6 +18,7 @@ export const Visitacao = () => {
   const { visitadosState, visitadosDispatch } = useContext(VisitadoContext);
   const { visitados } = visitadosState;
   const { visitacoes } = visitacaoState;
+  //eslint-disable-next-line
   const visitado = visitados.filter((e)=>e.id == id)[0]
 
   const componentRef = useRef();
