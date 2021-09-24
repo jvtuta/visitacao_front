@@ -5,7 +5,7 @@ export const reducer = (state, action) => {
 
       return { ...state, loading: true, feedback: '' };
     case types.SUCCESS_LOADING_VISITADOR:
-
+      localStorage.setItem('visitados',JSON.stringify(action.payload.visitados));
       return {
         ...state,
         visitados: action.payload.visitados,

@@ -30,11 +30,11 @@ export const Visitados = () => {
             return(
               <tr key={e.id}>
                 <RowVisitado visitado={e} />
-                <td>
+                <td className="col-md-2 p-0 text-center align-middle">
                   <ButtonGroup>
-                    <Link to={"/visitacoes/"+e.id} className="btn btn-sm btn-info">Visitações</Link>
+                    <Link to={"/visitacoes/"+e.id} className="btn btn-sm btn-info pt-3">Visitações</Link>
                     <Button variant="warning" size="sm">Editar</Button>
-                    <Button variant="success" className="btn btn-sm btn-success" >Cadastrar visitacao</Button>
+                    <Link to={"/visitado-cadastro/"+e.id} className="btn btn-sm btn-success">Cadastrar visitacao</Link>
                   </ButtonGroup>
                 </td>
               </tr>

@@ -45,6 +45,9 @@ ReactDOM.render(
                 <PrivateRoute path="/visitado-cadastro" exact>
                   <Visitado />
                 </PrivateRoute>
+                <PrivateRoute path="/visitado-cadastro/:id" exact>
+                  <Visitado />
+                </PrivateRoute>
                 <PrivateRoute path="/">
                   <Home />
                 </PrivateRoute>

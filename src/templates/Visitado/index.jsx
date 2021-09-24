@@ -8,28 +8,25 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { register_visitado } from "../../context/Visitados/actions";
 import { AuthContext } from "../../context/Auth/context";
+import { useParams } from "react-router";
 
 export const Visitado = () => {
   const { visitadosState, visitadosDispatch } = useContext(VisitadoContext);
   const { visitacaoState, visitacaoDispatch } = useContext(VisitacaoContext);
-  const { authState } = useContext(AuthContext)
-  console.log(
-    "state visitado=",
-    visitadosState,
-    "stateVisitacao=",
-    visitacaoState
-  );
+  const { id } = useParams();
+  const { authState } = useContext(AuthContext);
 
-  const handleBsubmit = (e) => {
-    let obj
+  const handleBsubmit = async (e) => {
+    let obj;
 
-    for(let i = 0; i < (e.current.length - 1); i++) {
+    for (let i = 0; i < e.current.length - 1; i++) {
       obj = {
-        ...obj,[e.current[i].name]:e.current[i].value
-      }
+        ...obj,
+        [e.current[i].name]: e.current[i].value,
+      };
     }
 
-    const { 
+    const {
       tipo,
       conselhoRegional,
       nome,
@@ -39,13 +36,13 @@ export const Visitado = () => {
       telefone,
       secretarias,
       locais_de_atendimento,
-      observacoes
-     } = obj
+      observacoes,
+    } = obj;
 
     const visitadoForm = new URLSearchParams({
       tipo,
-      crm: tipo ==='crm' ? conselhoRegional : '',
-      crn: tipo ==='crn' ? conselhoRegional : '',
+      crm: tipo === "crm" ? conselhoRegional : "",
+      crn: tipo === "crn" ? conselhoRegional : "",
       nome,
       especialidade,
       data_de_nascimento,
@@ -53,11 +50,45 @@ export const Visitado = () => {
       telefone,
       secretarias,
       locais_de_atendimento,
-      observacoes
-    })
+      observacoes,
+    });
 
-    register_visitado(visitadosDispatch, visitadoForm, authState.user.id)
-  }
+    const visitados = [...JSON.parse(localStorage.getItem("visitados"))];
+    switch (tipo) {
+      case "crm":
+        {
+          const visitado = visitados.filter((e) => {
+            //eslint-disable-next-line
+            return e["crm"] == conselhoRegional;
+          });
+
+          if (visitado) {
+            //Registrar visitacao
+
+          } else {
+            await register_visitado(visitadosDispatch, visitadoForm);
+          }
+        }
+        break;
+      case "crn":
+        {
+          const visitado = visitados.filter((e) => {
+            //eslint-disable-next-line
+            return e["crm"] == conselhoRegional;
+          });
+
+          if (visitado) {
+            //Registrar visitacao
+
+          } else {
+            await register_visitado(visitadosDispatch, visitadoForm);
+          }
+        }
+        break;
+      default:
+        break;
+    }
+  };
   return (
     <>
       <Header login="true" />
@@ -66,7 +97,7 @@ export const Visitado = () => {
           <Col>
             <nav aria-label="breadcrumb">
               <ol className="breadcrumb">
-                <li className="breadcrumb-item" >
+                <li className="breadcrumb-item">
                   <Link to="/">Home</Link>
                 </li>
                 <li className="breadcrumb-item" active="true">
@@ -77,9 +108,17 @@ export const Visitado = () => {
           </Col>
         </Row>
         <Row>
+          {id&&
+            <FormVisitado id_visitado={id} onClickCallback={handleBsubmit}>
+              <FormVisitacao />
+          </FormVisitado>}
+
+          {!id&&
           <FormVisitado onClickCallback={handleBsubmit}>
             <FormVisitacao />
-          </FormVisitado>
+          </FormVisitado>}
+
+          
         </Row>
       </Container>
     </>

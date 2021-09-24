@@ -1,26 +1,42 @@
-import { useContext, useRef, useState } from "react";
+import { useEffect, useRef, useMemo, useState } from "react";
 import { Form, Button, Col, Row, InputGroup } from "react-bootstrap";
-import { VisitadoContext } from "../../context/Visitados/context";
 
-export const FormVisitado = ({ place, children, onClickCallback }) => {
-  const {visitadoState} = useContext(VisitadoContext);
+export const FormVisitado = ({ id_visitado, children, onClickCallback }) => {
+  const visitadosJSON = localStorage.getItem('visitados')
+  const visitados = useMemo(()=> visitadosJSON ? JSON.parse(visitadosJSON) : [],[visitadosJSON]  ) 
   const [visitado, setVisitado] = useState();
-  const read = place ? true : false;
+  const read = id_visitado || visitado ? true : false;
   const tipo = useRef(null);
   const form = useRef(null);
 
-  function handleConselhoRegionalOnchange(e) {
-    if (e.target.length >= 4) {
-      if(place) {
-        setVisitado(place.filter((e)=>{
-          return e[tipo.current.value].conselho_regional === e.current.target
-        }))
-      } else {
-        setVisitado(visitadoState.visitados.filter((e)=>{
-          return e[tipo.current.value].conselho_regional === e.current.target
-        }))
-      }
+  useEffect(()=>{
+    if(id_visitado) {
+      setVisitado(()=>{
+          const res = visitados.filter((visitado)=>{
+            //eslint-disable-next-line
+            return visitado.id == id_visitado
+          })
+          return {...res[0]}
+        }
+      )
     }
+
+  },[id_visitado, visitados])
+
+  function handleConselhoRegionalOnchange(e) {
+      if(e.target.value.length >= 4) {
+        
+        setVisitado(()=>{
+          const res = visitados.filter((visitado)=>{
+            //eslint-disable-next-line
+            return visitado[tipo.current.value] == e.target.value
+          })
+          return {...res[0]}
+      })
+      }
+      if(visitado&&e.target.value.length <= 4) {
+        return setVisitado(null)
+      }   
   }
 
   return (
@@ -28,17 +44,21 @@ export const FormVisitado = ({ place, children, onClickCallback }) => {
       <h4 className="mt-1">Visitado: </h4>
       <Form ref={form}>
         <Row className="mb-2">
-          <Col xs md={4}>
+          <Col xs sm md={6} lg={4}>
             <InputGroup>
               <InputGroup.Text>Conselho regional</InputGroup.Text>
-              <Form.Control as="select" name="tipo" ref={tipo}>
+              <Form.Control as="select" name="tipo" ref={tipo} readOnly={id_visitado ? true : false}>
                 <option value="crm">CRM</option>
                 <option value="crn">CRN</option>
               </Form.Control>
               <Form.Control
+                //Pegar número de conselho regional de acordo com o tipo; Caso crm então crm caso crn então crn
+                placeholder={visitado ? visitado.crm ? visitado.crm:visitado.crn : ""}
+                defaultValue={visitado ? visitado.crm ? visitado.crm:visitado.crn : ""}
                 type="number"
                 name="conselhoRegional"
                 onChange={(e) => handleConselhoRegionalOnchange(e)}
+                readOnly={id_visitado ? true : false}
               />
             </InputGroup>
           </Col>
