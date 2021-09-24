@@ -46,7 +46,7 @@ export const Visitado = () => {
       trabalhos
     } = obj;
 
-    const visitadoForm = new URLSearchParams({
+    const visitadoForm = {
       tipo,
       crm: tipo === "crm" ? conselhoRegional : "",
       crn: tipo === "crn" ? conselhoRegional : "",
@@ -58,67 +58,33 @@ export const Visitado = () => {
       secretarias,
       locais_de_atendimento,
       observacoes,
-    });
+    };
 
-    const visitados = [...JSON.parse(localStorage.getItem("visitados"))];
-    switch (tipo) {
-      case "crm":
-        {
-          let visitado = visitados.filter((e) => {
-            //eslint-disable-next-line
-            return e["crm"] == conselhoRegional;
-          });
-
-          visitado = visitado[0]
-          const visitacaoForm = new URLSearchParams({
-            data,
-            comentarios,
-            amostras,
-            trabalhos,
-            id_visitado: id ? id : visitado.id ? visitado.id : JSON.parse(localStorage.getItem('visitado_id'))
-          })
-          if (visitado) {
-            //Registrar visitacao
-            await register_visitacao(visitacaoDispatch, visitacaoForm)
-          } else {
-            await register_visitado(visitadosDispatch, visitadoForm);
-            //Registrar visitacao após o registro de visitado
-            await register_visitacao(visitacaoDispatch, visitacaoForm)
-
-          }
-        }
-        break;
-      case "crn":
-        {
-          let visitado = visitados.filter((e) => {
-            //eslint-disable-next-line
-            return e["crm"] == conselhoRegional;
-          });
-
-          visitado = visitado[0]
-          const visitacaoForm = new URLSearchParams({
-            data,
-            comentarios,
-            amostras,
-            trabalhos,
-            id_visitado: id ? id : visitado.id ? visitado.id : JSON.parse(localStorage.getItem('visitado_id'))
-          })
-
-          if (visitado) {
-            //Registrar visitacao
-            await register_visitacao(visitacaoDispatch, visitacaoForm)
-          } else {
-            await register_visitado(visitadosDispatch, visitadoForm);
-            //Registrar visitacao após o registro de visitado
-            await register_visitacao(visitacaoDispatch, visitacaoForm)
-
-
-          }
-        }
-        break;
-      default:
-        break;
+    const visitacaoForm = {
+      data,
+      comentarios,
+      amostras,
+      trabalhos,
+      id_visitado: id ? id : ""
     }
+    const visitadoData = new URLSearchParams(visitadoForm)
+    const visitados = [...JSON.parse(localStorage.getItem("visitados"))];
+    let visitado = visitados.filter((visitado)=>{
+      //eslint-disable-next-line
+      return visitado[tipo] == e.current.value
+    })
+    visitado = visitado[0]
+    if(visitado) {
+      visitacaoForm.id_visitado = visitado.id
+      const visitacaoData = new URLSearchParams(visitacaoForm)
+      await register_visitacao(visitacaoDispatch, visitacaoData)
+    } else {
+      await register_visitado(visitadosDispatch, visitadoData)
+      visitacaoForm.id_visitado = JSON.parse(localStorage.getItem('visitado_id'))
+      const visitacaoData = new URLSearchParams(visitacaoForm)
+      await register_visitacao(visitacaoDispatch, visitacaoData)
+    }
+
   };
   return (
     <>
