@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useReactToPrint }  from "react-to-print";
 import { VisitacaoImpressao } from "../../components/VisitacaoImpressao";
 import { load_visitado } from "../../context/Visitados/actions";
+import moment from "moment";
 
 
 export const Visitacao = () => {
@@ -67,6 +68,9 @@ export const Visitacao = () => {
           <tbody>
             {visitacoes.length > 0 &&
               visitacoes.map((e) => {
+                
+                e.data = moment(e.data, 'YYYY-MM-DD').format("DD-MM-YYYY")
+
                 return (
                   <tr key={e.id}>
                     <RowVisitacao visitacao={e} />

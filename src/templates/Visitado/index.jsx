@@ -13,12 +13,12 @@ import { useParams } from "react-router";
 //Ações
 import { register_visitado } from "../../context/Visitados/actions";
 import { register_visitacao } from "../../context/Visitacao/actions";
-
+//Momentmo
+import moment from "moment"
 export const Visitado = () => {
   const { visitadosDispatch } = useContext(VisitadoContext);
   const { visitacaoDispatch } = useContext(VisitacaoContext);
   const { id } = useParams();
-
   const handleBsubmit = async (e) => {
     let obj;
 
@@ -52,21 +52,22 @@ export const Visitado = () => {
       crn: tipo === "crn" ? conselhoRegional : "",
       nome,
       especialidade,
-      data_de_nascimento,
+      data_de_nascimento: moment(data_de_nascimento, 'YYYY-MM-DD').format('DD-MM-YYYY'),
       email,
       telefone,
       secretarias,
       locais_de_atendimento,
       observacoes,
     };
-
+    // console.log(data)
     const visitacaoForm = {
-      data,
+      data: moment(data, 'DD-MM-YYYY').format('DD-MM-YYYY'),
       comentarios,
       amostras,
       trabalhos,
       id_visitado: id ? id : ""
     }
+    
     const visitadoData = new URLSearchParams(visitadoForm)
     const visitados = [...JSON.parse(localStorage.getItem("visitados"))];
     let visitado = visitados.filter((visitado)=>{

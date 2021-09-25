@@ -19,13 +19,14 @@ export const Header = ({login = false}) => {
       <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand style={{cursor: "pointer"}} >
-            <a href="https://www.essencialdf.com.br/" target="_blank" className="me-3" rel="noreferrer">
+            <a href="https://www.essencialdf.com.br/" target="_blank" 
+            className="me-3 d-block d-md-inline" rel="noreferrer">
               <span><img alt="logo-essencial" src={logo}></img></span>
               
             </a>
-            Controle de visitações
+            <span className="d-xs-inline">Controle de visitações</span>
           </Navbar.Brand>
-          
+              
           {login && (
             <>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />

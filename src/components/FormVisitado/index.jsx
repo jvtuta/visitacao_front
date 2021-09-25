@@ -1,6 +1,6 @@
 import { useEffect, useRef, useMemo, useState } from "react";
 import { Form, Button, Col, Row, InputGroup } from "react-bootstrap";
-
+import moment from "moment";
 export const FormVisitado = ({ id_visitado, children, onClickCallback }) => {
   const visitadosJSON = localStorage.getItem('visitados')
   const visitados = useMemo(()=> visitadosJSON ? JSON.parse(visitadosJSON) : [],[visitadosJSON]  ) 
@@ -8,7 +8,6 @@ export const FormVisitado = ({ id_visitado, children, onClickCallback }) => {
   const read = id_visitado || visitado ? true : false;
   const tipo = useRef(null);
   const form = useRef(null);
-  
   useEffect(()=>{
     if(id_visitado) {
       setVisitado(()=>{
@@ -38,12 +37,13 @@ export const FormVisitado = ({ id_visitado, children, onClickCallback }) => {
             return null
           }
       })
-      }
+
+    }
       if(visitado&&e.target.value.length <= 4) {
         return setVisitado(null)
       }   
   }
-
+  
   return (
     <>
       <h4 className="mt-1">Visitado: </h4>
@@ -99,9 +99,9 @@ export const FormVisitado = ({ id_visitado, children, onClickCallback }) => {
           <Form.Group as={Col} sm={2} xs={12} md={3} lg={3}>
             <Form.Label>Data de nascimento</Form.Label>
             <Form.Control
-              type="date"
+              type="date" 
               readOnly={read}
-              defaultValue={visitado ? visitado.data_de_nascimento : ""}
+              defaultValue={visitado ? moment(visitado.data_de_nascimento, 'DD-MM-YYYY').format('YYYY-MM-DD'): ""}
               name="data_de_nascimento"
             />
           </Form.Group>
