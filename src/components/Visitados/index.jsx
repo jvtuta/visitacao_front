@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Table, Button, ButtonGroup } from "react-bootstrap";
+import { Table, ButtonGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { VisitadoContext } from "../../context/Visitados/context";
 import { RowVisitado }  from "../RowVisitado"
@@ -32,8 +32,8 @@ export const Visitados = () => {
                 <RowVisitado visitado={e} />
                 <td className="col-md-2 p-0 text-center align-middle">
                   <ButtonGroup>
-                    <Link to={"/visitacoes/"+e.id} className="btn btn-sm btn-info pt-3">Visitações</Link>
-                    <Button variant="warning" size="sm">Editar</Button>
+                    <Link to={"/visitacoes/"+e.id} className="btn btn-sm btn-info">Visitações</Link>
+                    <Link size="sm" className="btn btn-sm btn-warning">Editar</Link>
                     <Link to={"/visitado-cadastro/"+e.id} className="btn btn-sm btn-success">Cadastrar visitacao</Link>
                   </ButtonGroup>
                 </td>
