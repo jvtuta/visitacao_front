@@ -1,11 +1,12 @@
 //Componentes
 import { FormVisitado } from "../../components/FormVisitado";
 import { FormVisitacao } from "../../components/FormVisitacao";
+import { Feedback } from "../../components/Feedback";
 //Contextos
 import { VisitadoContext } from "../../context/Visitados/context";
 import { VisitacaoContext } from "../../context/Visitacao/context";
 //React e react-router
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Header } from "../../components/Header";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -15,10 +16,12 @@ import { register_visitado } from "../../context/Visitados/actions";
 import { register_visitacao } from "../../context/Visitacao/actions";
 //Momentmo
 import moment from "moment"
+import { Loading } from "../../components/Loading";
 export const Visitado = () => {
   const { visitadosDispatch } = useContext(VisitadoContext);
-  const { visitacaoDispatch } = useContext(VisitacaoContext);
+  const { visitacaoState, visitacaoDispatch } = useContext(VisitacaoContext);
   const { id } = useParams();
+  useEffect(()=>visitacaoState.feedback = '')
   const handleBsubmit = async (e) => {
     let obj;
 
@@ -90,6 +93,7 @@ export const Visitado = () => {
   return (
     <>
       <Header login="true" />
+      {visitacaoState.loading&&<Loading />}
       <Container>
         <Row>
           <Col>
@@ -115,7 +119,7 @@ export const Visitado = () => {
           <FormVisitado onClickCallback={handleBsubmit}>
             <FormVisitacao />
           </FormVisitado>}
-
+        {visitacaoState.feedback === "Cadastro realizado com sucesso!"&&<Feedback feedback={visitacaoState.feedback} />}
           
         </Row>
       </Container>

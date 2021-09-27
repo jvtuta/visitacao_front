@@ -13,7 +13,7 @@ export const reducer = (state,action) => {
             return {...state, feedback: action.payload.feedback, loading: false}
         case types.SUCCESS_REGISTRATION_VISITACOES:
 
-            return {...state, visitacoes:[ ...state.visitacoes, action.payload.visitacoes ], loading: false, feedback: 'success'}
+            return {...state, visitacoes:[ ...state.visitacoes, action.payload.visitacoes ], loading: false, feedback: 'Cadastro realizado com sucesso!'}
         case types.TRYING_REGISTRATION_VISITACOES:
 
             return {...state, loading: true, feedback: ''}

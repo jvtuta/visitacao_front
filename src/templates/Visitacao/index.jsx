@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useReactToPrint }  from "react-to-print";
 import { VisitacaoImpressao } from "../../components/VisitacaoImpressao";
 import { load_visitado } from "../../context/Visitados/actions";
+import { Loading } from "../../components/Loading";
 import moment from "moment";
 
 
@@ -30,11 +31,12 @@ export const Visitacao = () => {
   useEffect(() => {  
 
     load_visitacao(visitacaoDispatch, id);
-    load_visitado(visitadosDispatch)
+    load_visitado(visitadosDispatch);
   }, [visitacaoDispatch, id, visitadosDispatch]);
   return (
     <>
       <Header login={true} />
+      {visitacaoState.loading&&<Loading />}
       <Container>
         <Row>
           <Col>
