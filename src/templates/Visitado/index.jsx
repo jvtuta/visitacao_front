@@ -90,6 +90,7 @@ export const Visitado = () => {
     }
 
   };
+
   return (
     <>
       <Header login="true" />
