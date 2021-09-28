@@ -64,7 +64,7 @@ export const Visitacao = () => {
               <th>Amostras</th>
               <th>Trabalhos</th>
               <th>Comentários</th>
-              <th>#Ações</th>
+              {/* <th>#Ações</th> */}
             </tr>
           </thead>
           <tbody>
@@ -79,8 +79,8 @@ export const Visitacao = () => {
                     <td className="col-md-1">
                       <ButtonGroup>
                           {/* eslint-disable-next-line */}
-                        <Button variant="success" size="sm">Editar</Button>
-                        <Button variant="danger" size="sm">Excluir</Button>
+                        {/* <Button variant="success" size="sm">Editar</Button> */}
+                        {/* <Button variant="danger" size="sm">Excluir</Button> */}
                       </ButtonGroup>
                     </td>
                   </tr>
