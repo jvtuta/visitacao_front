@@ -10,9 +10,6 @@ export const Visitados = () => {
   //Todos os visitados
   const { visitados } = visitadosState
 
-  let page = 0
-  const visitadosPerPage = visitados.slice(page, 21)
-  const nextPage = page + 21;
   const pages = Math.ceil(visitados.length / 21)
   
   
@@ -34,7 +31,6 @@ export const Visitados = () => {
         <nav aria-label="..." className="col m-0">
           <ul class="pagination pagination-sm">
             <PaginationLinks qtd={pages} />
-            
           </ul>
         </nav>
       </div>

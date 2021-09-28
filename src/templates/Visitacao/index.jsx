@@ -90,7 +90,7 @@ export const Visitacao = () => {
         </Table>
         </Row>
         <div style={{ display: "none" }}>
-            <VisitacaoImpressao visitacoes={visitacoes} ref={componentRef}/>
+            <VisitacaoImpressao visitacoes={visitacoes} visitado={visitado} ref={componentRef}/>
         </div>
       </Container>
     </>

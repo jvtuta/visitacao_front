@@ -5,7 +5,8 @@ import "./style.css"
 export class VisitacaoImpressao extends PureComponent {
   render() {
       //eslint-disable-next-line
-    const visitacoes = { ...this.props.visitacoes };
+    const visitacoes = [ ...this.props.visitacoes ];
+    const visitado = {...this.props.visitado};
     return (
         <div className="container">
             <div className="row mb-5">
@@ -18,48 +19,68 @@ export class VisitacaoImpressao extends PureComponent {
             </div>
             <div className="row mb-2 borda p-3">
                 <div className="col-12">
-                    <span>Nome:</span>
+                    <span className="me-2">Nome:</span><span>{visitado.nome}</span>
                     <div className="borda-texto" ></div>
                 </div>
                 <div className="col-5">
-                    <span>CRM/CRN:</span>
+                    <span className="me-2">CRM/CRN:</span><span>{visitado.crm ? visitado.crm : visitado.crn}</span>
                     <div className="borda-texto" ></div>
                 </div>
                 <div className="col-7">
 
-                    <span>Especialidade:</span>
+                    <span className="me-2">Especialidade:</span><span>{visitado.especialidade}</span>
                     <div className="borda-texto" ></div>
                 </div>
                 <div className="col-12">
 
-                    <span>Telefones:</span>
-                    <div className="borda-texto" ></div>
-                </div>
-                <div className="col-6">
-
-                    <span>Celular:</span>
+                    <span className="me-2">Telefones:</span><span>{visitado.telefone}</span>
                     <div className="borda-texto" ></div>
                 </div>
                 <div className="col-12">
 
-                    <span>Locais de atendimento:</span>
+                    <span className="me-2">Locais de atendimento:</span><span>{visitado.locais_de_atendimento}</span>
                     <div className="borda-texto" ></div>
                 </div>
                 <div className="col-12">
 
-                    <span>Email:</span>
+                    <span className="me-2">Email:</span><span>{visitado.email}</span>
+                    <div className="borda-texto"></div>
+                </div>
+                <div className="col-12">
+
+                    <span className="me-2">Secretarias:</span><span>{visitado.secretarias}</span>
                     <div className="borda-texto" ></div>
                 </div>
                 <div className="col-12">
 
-                    <span>Secretarias:</span>
+                    <span className="me-2">Observacoes:</span><span>{visitado.observacoes}</span>
                     <div className="borda-texto" ></div>
                 </div>
-                <div className="col-12">
-
-                    <span>Observacoes:</span>
-                    <div className="borda-texto" ></div>
-                </div>
+            </div>
+            <div className="row mb-2">
+                {
+                    visitacoes.map((e)=>(
+                        <div key={e.id} className="mb-1 p-3 visitacoes">
+                            <div className="col-3">
+                                <span className="me-2">Data:</span><span>{e.data}</span>
+                                <div className="borda-texto" ></div>
+                            </div>
+                            <div className="col-12">
+                                <span className="me-2">Comentarios:</span><span>{e.comentarios}</span>
+                                <div className="borda-texto" ></div>
+                            </div>
+                            <div className="col-12">
+                                <span className="me-2">Amostras:</span><span>{e.amostras}</span>
+                                <div className="borda-texto" ></div>
+                            </div>
+                            <div className="col-12">
+                                <span className="me-2">Trabalhos:</span><span>{e.trabalhos}</span>
+                                <div className="borda-texto" ></div>
+                            </div>
+                        </div>
+                    ))
+                }
+                
             </div>
         </div>
     );
