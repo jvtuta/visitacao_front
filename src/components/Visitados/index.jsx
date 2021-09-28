@@ -29,7 +29,7 @@ export const Visitados = () => {
       </div>
       <div className="row mb-1">      
         <nav aria-label="..." className="col m-0">
-          <ul class="pagination pagination-sm">
+          <ul className="pagination pagination-sm">
             <PaginationLinks qtd={pages} />
           </ul>
         </nav>

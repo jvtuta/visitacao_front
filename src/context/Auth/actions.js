@@ -24,7 +24,6 @@ export const Authenticate_user = async (dispatch, form_user) => {
     });
   } catch (err) {
     console.log(err.toJSON())
-    console.log(err.response.status)
     const message = err.toJSON().message
 
     if(message.includes('500')) {
