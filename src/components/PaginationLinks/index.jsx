@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 export const PaginationLinks = ({ qtd }) => {
   let links = [];
@@ -9,7 +8,8 @@ export const PaginationLinks = ({ qtd }) => {
   return (
     <>
         {links.map((e)=>(
-            <li className={"page-item"}><a className="page-link">{e}</a></li>
+            //eslint-disable-next-line
+            <li className={"page-item"}><a className="page-link" href="#">{e}</a></li>
         ))}
     </>
   );
