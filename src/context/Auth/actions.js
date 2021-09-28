@@ -24,6 +24,7 @@ export const Authenticate_user = async (dispatch, form_user) => {
     });
   } catch (err) {
     console.log(err.toJSON())
+    console.log(err.response.status)
     const message = err.toJSON().message
 
     if(message.includes('500')) {
@@ -39,6 +40,14 @@ export const Authenticate_user = async (dispatch, form_user) => {
           feedback: "Problema ao se conectar à API contate o administrador",
         },
       });
+    }
+    if(message.includes('403')) {
+      return dispatch({
+        type: types.ERR_LOGON,
+        payload: {
+          feedback: 'Usuario nao autorizado para login'
+        }
+      })
     }
     return dispatch({
       type: types.ERR_LOGON,
