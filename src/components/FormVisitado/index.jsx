@@ -1,11 +1,12 @@
 import { useEffect, useRef, useMemo, useState } from "react";
 import { Form, Button, Col, Row, InputGroup } from "react-bootstrap";
 import moment from "moment";
-export const FormVisitado = ({ id_visitado, children, onClickCallback }) => {
+export const FormVisitado = ({ id_visitado, children, onClickCallback, update=false, updateFunction }) => {
   const visitadosJSON = localStorage.getItem('visitados')
   const visitados = useMemo(()=> visitadosJSON ? JSON.parse(visitadosJSON) : [],[visitadosJSON]  ) 
   const [visitado, setVisitado] = useState();
-  const read = id_visitado || visitado ? true : false;
+  //Se id_visitado estiver setado entao -> Caso o inverso de update seja true então read é true caso contrário read é false ou visitado então Caso o inverso de update seja true então read é true caso contrário read é false
+  const read = id_visitado || visitado ? !update ? true : false : false;
   const tipo = useRef(null);
   const form = useRef(null);
   useEffect(()=>{
@@ -46,7 +47,8 @@ export const FormVisitado = ({ id_visitado, children, onClickCallback }) => {
   
   return (
     <>
-      <h4 className="mt-1">Visitado: </h4>
+      {!update&&<h4 className="mt-1">Visitado: </h4>}
+      {update&&<h4 className="mt-1">{visitado?.nome} </h4>}
       <Form ref={form}>
         <Row className="mb-2">
           <Col xs sm md={6} lg={4}>
@@ -180,8 +182,9 @@ export const FormVisitado = ({ id_visitado, children, onClickCallback }) => {
               type="submit"
             >
               {" "}
-              Salvar{" "}
+              {!update?'Salvar':'Update'}{" "}
             </Button>
+            {update&&<Button className="mt-3 me-3 col-md-4" variant="warning" onClick={(e)=>updateFunction(e, form)}>Voltar</Button>}
           </div>
         </Row>
       </Form>

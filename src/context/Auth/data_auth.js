@@ -7,4 +7,5 @@ export const data_auth = {
 }
 
 // export const srv_api = 'https://visitacoes.online/api/v1/'
+// export const srv_api = 'http://localhost:8000/api/v1'
 export const srv_api = "http://localhost:8000/api/v1/"

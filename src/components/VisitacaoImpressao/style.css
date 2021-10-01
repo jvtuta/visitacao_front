@@ -7,16 +7,23 @@
 }
 
 
+
+ /*@page {
+    size: A4; 
+    padding: 8mm, 8mm, 14mm, 8mm;
+  }*/ 
+
+@page {
+    size: A4;
+    margin: 8mm 6mm 14mm 6mm;    
+}
+
 @media print 
 {
     div .visitacoes {
         break-inside: avoid;
     }
 
-    @page {
-      size: A4; /* DIN A4 standard, Europe */
-      margin:0;
-    }
     html, body {
         width: 210mm;
         /* height: 297mm; */
@@ -25,11 +32,7 @@
         background: #FFF;
         overflow: visible;
     }
-    body {
-        padding-bottom: 15mm;
 
-        padding-top:15mm;
-    }
 }
 
 

@@ -8,7 +8,7 @@ export class VisitacaoImpressao extends PureComponent {
     const visitacoes = [ ...this.props.visitacoes ];
     const visitado = {...this.props.visitado};
     return (
-        <div className="container">
+        <div className="container" id="visitacaoImpressao">
             <div className="row mb-5">
                 <div className="col-8 text-center">
                     <span className="fs-2 ps-3" >FICHA DE CADASTRO DO MÉDICO E DO NUTRICIONISTA</span>

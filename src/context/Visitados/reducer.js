@@ -29,6 +29,21 @@ export const reducer = (state, action) => {
     case types.ERR_REGISTRATION_VISITADOR:
 
       return { ...state, loading: false, feedback: action.payload.feedback};
+    case types.TRYING_UPDATE_VISITADO:
+
+      return {...state, loading: true, feedback: ''}
+    case types.SUCCESS_UPDATE_VISITADO:
+      return {
+        ...state, 
+        loading: false,
+        feedback: 'Visitado atualizado com sucesso!'
+      }
+    case types.ERR_UPDATE_VISITADO:
+      return {
+        ...state,
+        loading: false,
+        feedback: 'ERRO ao atualizar o visitado, contate o administrador'
+      }
     default:
       break;
   }

@@ -114,3 +114,34 @@ export const register_visitado = async (dispatch, form_user) => {
     });
   }
 };
+
+export const update_visitado = async (dispatch, form_visitado, id) => { 
+  dispatch({type: types.TRYING_UPDATE_VISITADO })
+  const config = {
+    method: 'POST',
+    url: srv_api + "visitado/"+id,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Accept: "application/json",
+      Authorization: "bearer "+ localStorage.getItem('token')
+    },
+    data: form_visitado
+  }
+  try {
+    const response = await ( await axios(config)).data
+
+    dispatch({
+      type: types.SUCCESS_UPDATE_VISITADO, 
+      payload: { 
+        visitado: {...response}
+      }
+    })
+  } catch(err) {
+    console.log(err)
+    const message = err.toJSON().message
+    console.log(message)
+    dispatch({
+      type: types.ERR_UPDATE_VISITADO
+    })
+  }
+}
