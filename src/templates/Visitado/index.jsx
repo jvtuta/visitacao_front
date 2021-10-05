@@ -49,7 +49,6 @@ export const Visitado = () => {
       amostras,
       trabalhos
     } = obj;
-
     const visitadoForm = {
       tipo,
       crm: tipo === "crm" ? conselhoRegional : "",
