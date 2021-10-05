@@ -4,11 +4,12 @@ import moment from "moment";
 export const FormVisitado = ({ id_visitado, children, onClickCallback, update=false, updateFunction }) => {
   const visitadosJSON = localStorage.getItem('visitados')
   const visitados = useMemo(()=> visitadosJSON ? JSON.parse(visitadosJSON) : [],[visitadosJSON]  ) 
-  const [visitado, setVisitado] = useState();
+  const [ visitado, setVisitado ] = useState();
   //Se id_visitado estiver setado entao -> Caso o inverso de update seja true então read é true caso contrário read é false ou visitado então Caso o inverso de update seja true então read é true caso contrário read é false
   const read = id_visitado || visitado ? !update ? true : false : false;
   const tipo = useRef(null);
   const form = useRef(null);
+
   useEffect(()=>{
     if(id_visitado) {
       setVisitado(()=>{
@@ -177,7 +178,7 @@ export const FormVisitado = ({ id_visitado, children, onClickCallback, update=fa
               variant="info"
               onClick={(e) => {
                 e.preventDefault();
-                return onClickCallback(form);
+                onClickCallback(form);
               }}
               type="submit"
             >

@@ -21,6 +21,7 @@ export const Visitado = () => {
   const { visitadosDispatch } = useContext(VisitadoContext);
   const { visitacaoState, visitacaoDispatch } = useContext(VisitacaoContext);
   const { id } = useParams();
+  
   useEffect(()=>visitacaoState.feedback = '')
   const handleBsubmit = async (e) => {
     let obj;
@@ -62,20 +63,19 @@ export const Visitado = () => {
       locais_de_atendimento,
       observacoes,
     };
-    // console.log(data)
     const visitacaoForm = {
-      data: moment(data, 'DD-MM-YYYY').format('DD-MM-YYYY'),
+      data: moment(data, 'YYYY-MM-DD').format('DD-MM-YYYY'),
       comentarios,
       amostras,
       trabalhos,
       id_visitado: id ? id : ""
     }
-    
     const visitadoData = new URLSearchParams(visitadoForm)
     const visitados = [...JSON.parse(localStorage.getItem("visitados"))];
+    
     let visitado = visitados.filter((visitado)=>{
       //eslint-disable-next-line
-      return visitado[tipo] == e.current.value
+      return visitado[tipo] == obj.conselhoRegional
     })
     visitado = visitado[0]
     if(visitado) {

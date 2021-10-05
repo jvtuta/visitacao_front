@@ -25,7 +25,6 @@ export const FormRegistro = () => {
       Register_user(authDispatch, params);
       return;
     } else {
-      console.log("false");
       setVerifyPass(false);
       return;
     }

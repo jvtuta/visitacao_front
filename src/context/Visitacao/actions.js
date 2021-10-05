@@ -57,7 +57,6 @@ export const register_visitacao = async (dispatch, form_user) => {
       payload: { visitacoes: response },
     });
   } catch (err) {
-    console.log(err)
     console.log(err.toJSON())
     const message = err.toJSON().message
     if(message.includes('422')) {

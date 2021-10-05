@@ -102,7 +102,10 @@ export const Visitados = ({reload}) => {
                 <td className="col-md-2 p-0 text-center align-middle">
                   <ButtonGroup>
                     <Link to={"/visitacoes/"+e.id} className="btn btn-sm btn-info">Visitações</Link>
-                    {/* <Link size="sm" className="btn btn-sm btn-warning">Editar</Link> */}
+                    <Link size="sm" to="/visitado/" className="btn btn-sm btn-warning" onClick={(event)=>{
+                      event.preventDefault()
+                      setVisitadoUpdateId(e.id)
+                    }}>Editar</Link>
                     <Link to={"/visitado-cadastro/"+e.id} className="btn btn-sm btn-success">Cadastrar visitacao</Link>
                   </ButtonGroup>
                 </td>
