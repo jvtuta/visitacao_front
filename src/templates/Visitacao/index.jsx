@@ -53,6 +53,7 @@ export const Visitacao = () => {
         </Row>
           <div className="mb-3">
             <h4 className="d-inline border-bottom py-2">{visitado.nome}</h4>
+            {/* <Link to={"/visitado-cadastro/"+id} className="btn btn-sm btn-outline-success float-end ms-2">Incluir Visita</Link> */}
             <Button className="float-end" size="sm" variant="outline-info" onClick={handlePrint}>Imprimir Visitações</Button>
           </div>
         <Row>

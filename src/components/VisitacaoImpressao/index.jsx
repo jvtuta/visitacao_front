@@ -48,32 +48,32 @@ export class VisitacaoImpressao extends PureComponent {
                 </div>
                 <div className="col-12">
 
-                    <span className="me-2">Secretarias:</span><span>{visitado.secretarias}</span>
+                    <span className="me-2">Secretárias:</span><span>{visitado.secretarias}</span>
                     <div className="borda-texto" ></div>
                 </div>
                 <div className="col-12">
 
-                    <span className="me-2">Observacoes:</span><span>{visitado.observacoes}</span>
+                    <span className="me-2">Observações:</span><span>{visitado.observacoes}</span>
                     <div className="borda-texto" ></div>
                 </div>
             </div>
-            <div className="row mb-2">
+            <div className="">
                 {
                     visitacoes.map((e)=>(
-                        <div key={e.id} className="mb-1 p-3 visitacoes">
-                            <div className="col-3">
+                        <div key={e.id} className="visitacoes">
+                            <div className="data">
                                 <span className="me-2">Data:</span><span>{e.data}</span>
                                 <div className="borda-texto" ></div>
                             </div>
-                            <div className="col-12">
-                                <span className="me-2">Comentarios:</span><span>{e.comentarios}</span>
+                            <div className="2">
+                                <span className="me-2">Comentários:</span><span>{e.comentarios}</span>
                                 <div className="borda-texto" ></div>
                             </div>
-                            <div className="col-12">
+                            <div className="2">
                                 <span className="me-2">Amostras:</span><span>{e.amostras}</span>
                                 <div className="borda-texto" ></div>
                             </div>
-                            <div className="col-12">
+                            <div className="2">
                                 <span className="me-2">Trabalhos:</span><span>{e.trabalhos}</span>
                                 <div className="borda-texto" ></div>
                             </div>

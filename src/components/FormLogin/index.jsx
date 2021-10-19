@@ -46,8 +46,8 @@ export const FormLogin = () => {
         </Form>
       </Card.Body>
       <Card.Footer>
-        <Button className="mt-3 me-3" variant="info" onClick={handleBlogin}> Logar </Button>
-        <Link to="/registrar" className=" mt-3 btn btn-primary">Registrar</Link>
+        <Button className="mt-3 col-5" variant="info" onClick={handleBlogin}> Logar </Button>
+        <Link to="/registrar" className="float-end mt-3 col-5 btn btn-primary">Registrar</Link>
         {authState.loading&&(
             <div>
                 <span>Carregando...</span>

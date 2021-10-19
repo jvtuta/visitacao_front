@@ -3,7 +3,7 @@ import { Form, Row, Col } from "react-bootstrap";
 export const FormVisitacao = () => {
     return (
       <>
-        <h4 className="mt-4">Visitações: </h4>
+        <h4 className="mt-4">Visita: </h4>
         <Row className="">
           <Form.Group as={Col} sm={2} xs={12} md={3} lg={3}>
             <Form.Label>Data</Form.Label>
